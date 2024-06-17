@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="container">
+    <p>Assine WD informática fibra óptica, a melhor internet do brasil</p>
+    <div class="main">
+        <div style="margin-bottom: 2rem;" class="card">
+            <p-tabMenu [model]="items" [(activeItem)]="activeItem" (activeItemChange)="onTabChange($event)">
+                <ng-template let-item pTemplate="item">
+                    <a class="p-menuitem-link flex justify-content-between align-items-center p-3">
+                        <div>
+                            <span style="margin-right: 10px;" [class]="item.icon"></span>
+                            <span>{{ item.label }}</span>
+                        </div>
+                    </a>
+                </ng-template>
+            </p-tabMenu>
+        </div>
+        <div *ngIf="selectedTab === 'Internet'">
+            <app-conteudo-internet></app-conteudo-internet>
+        </div>
+        <div *ngIf="selectedTab === 'Internet + TV aberta'">
+            <p>Conteúdo específico para o plano de Internet + TV aberta.</p>
+        </div>
+    </div>
+</div>
