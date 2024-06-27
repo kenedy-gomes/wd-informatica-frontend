@@ -1,0 +1,35 @@
+.sobre-container {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+     margin-top: 10rem;
+    align-items: center;
+}
+  
+.sobre-container h1 {
+    color: #0056b3;
+    margin-bottom: 3rem;
+  }
+  
+.sobre-container p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.sobre{
+    display: flex;
+    padding: 20px;
+    
+}
+  
+.sobre p {
+    padding: 20px;
+    background-color: #0056b3;
+    color: white;
+    border-radius: 20px;
+    margin: 0px 0px 0px 70px;
+    max-width: 500px;
+}

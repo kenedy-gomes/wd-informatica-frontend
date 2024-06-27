@@ -1,0 +1,40 @@
+.container-contato{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f1f1f1;
+}
+
+.container-form{
+    width: 450px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.title-message{
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.title-message img{
+    width: 300px;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}

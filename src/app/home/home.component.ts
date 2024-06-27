@@ -8,12 +8,13 @@ import { ButtonModule } from 'primeng/button';
 import { BadgeModule } from 'primeng/badge';
 import { CommonModule } from '@angular/common';
 import {ConteudoInternetComponent} from '../conteudo-internet/conteudo-internet.component';
+import {FooterComponent} from '../footer/footer.component';
  
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, InputTextModule, HeaderComponent, TabMenuModule, ButtonModule, BadgeModule, CommonModule, ConteudoInternetComponent],
+  imports: [RouterLink, InputTextModule, HeaderComponent, TabMenuModule, ButtonModule, BadgeModule, CommonModule, ConteudoInternetComponent, FooterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -25,7 +26,6 @@ export class HomeComponent {
   ngOnInit() {
     this.items = [
       { label: 'Internet', icon: 'pi pi-wifi' },
-      { label: 'Internet + TV aberta', icon: 'pi pi-globe' },
     ];
 
     this.activeItem = this.items[0];

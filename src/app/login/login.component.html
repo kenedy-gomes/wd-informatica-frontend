@@ -1,1 +1,38 @@
-<p>login works!</p>
+ 
+<body>
+  <div class="container-contato">
+    <div class="container-form">
+      <form  #faleConoscoForm="ngForm">
+        <div class="title-message">
+          <img  src="/assets/logo-principal-removebg-preview.png" alt="">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <div class="flex flex-column">
+            <input
+              pInputText
+              placeholder="CPF"
+              id="cpf"
+              name="cpf"
+              aria-describedby="cpf-help"
+              [(ngModel)]="value"
+            />
+          </div>
+          <div class="flex flex-column">
+            <input
+            type="password"
+            pInputText
+            placeholder="Senha"
+            id="password"
+            name="password"
+            aria-describedby="password-help"
+            [(ngModel)]="value"
+          />
+          </div>
+          <p>Não possui uma conta? <a href="/register">Clique aqui</a></p>
+          <p-button class="btn" [style]="{padding: '10px', width: '50%', marginTop: '10px'}" label="Entrar" />
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+ 

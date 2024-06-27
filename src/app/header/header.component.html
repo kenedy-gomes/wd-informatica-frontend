@@ -1,47 +1,52 @@
 <header class="header">
   <div class="logo">
-    <h1>WD Informática</h1>
-    <p>Fibra Óptica</p>
+    <img src="/assets/logo-principal-removebg-preview.png" alt="Logo" />
   </div>
-  <nav class="nav-links">
-    <a routerLink="/home">Home</a>
-    <a routerLink="/sobre">Sobre</a>
-    <a routerLink="/planos">Planos</a>
-    <a style="margin-right: 6rem" routerLink="/contato">Contato</a>
-    <div style="display: flex; align-items: center">
-      <p-avatar icon="pi pi-user" styleClass="mr-2" size="large" shape="circle" />
-      <div class="login">
-        <p>
-          Faça<Strong><a routerLink="/login"> Login </a></Strong> ou
-        </p>
-        <Strong><a routerLink="/register">Cadastre-se</a></Strong>
-      </div>
+  <nav *ngIf="userData" class="nav-links">
+    <a routerLink="/">Ofertas</a>
+    <a target="_blank" href="https://www.minhaconexao.com.br">Velocidade</a>
+    <a routerLink="/contato">Fale conosco</a>
+    <div style="display: flex; align-items: center; gap: 10px">
+      <p style="font-weight: bold;">Ola, {{userData}}</p>
+      <p-menu [style]="{padding: '1rem'}" #menu [model]="items" [popup]="true" />
+      <p-avatar [style]="{cursor: 'pointer'}" (click)="menu.toggle($event)" icon="pi pi-user" styleClass="mr-2" size="large" shape="circle"></p-avatar>
     </div>
   </nav>
-  <div  class="hamburger">
-    <p-sidebar position="right" [style]="{'background-color': '#104680', 'color': 'white', 'padding': '1rem', 'width': '17rem'}" [(visible)]="sidebarVisible">
-        <ul class="ul-nav-links-mobile">
-          <div style="display: flex; align-items: center;">
-            <li style="margin: 1rem 0rem 1rem 0rem;"><p-avatar icon="pi pi-user" styleClass="mr-2" size="large" shape="circle" /></li>
-            <div class="login-mobile">
-              <p>
-                Faça<Strong><a routerLink="/login"> Login </a></Strong> ou
-              </p>
-              <p>
-                <Strong><a routerLink="/register">Cadastre-se</a></Strong>
-              </p>
-              
-            </div>
-          </div>
-          
-          <div class="nav-links-mobile">
-              <a routerLink="/home">Home</a>
-              <a routerLink="/sobre">Sobre</a>
-              <a routerLink="/planos">Planos</a>
-              <a routerLink="/contato">Contato</a>
-          </div>
-        </ul>
+  <nav *ngIf="!userData" class="nav-links">
+    <a routerLink="/">Ofertas</a>
+    <a target="_blank" href="https://www.minhaconexao.com.br">Velocidade</a>
+    <a routerLink="/contato">Fale conosco</a>
+    <a routerLink="/login">Área do cliente</a>
+  </nav>
+
+  <div class="hamburger">
+    <p-sidebar
+      position="right"
+      [style]="{
+        'background-color': '#072063',
+        color: 'white',
+        padding: '1rem',
+        width: '17rem'
+      }"
+      [(visible)]="sidebarVisible"
+    >
+      <ul class="ul-nav-links-mobile">
+        <div class="nav-links-mobile">
+          <a routerLink="/home">Ofertas</a>
+          <a routerLink="/contato">Fale conosco</a>
+          <a routerLink="/login">Área do cliente</a>
+        </div>
+      </ul>
     </p-sidebar>
-    <p-button size="large" [style]="{'background-color': '#104680', 'color': 'white', 'border': 'none'}" (click)="sidebarVisible = true" icon="pi pi-align-justify" />
-</div>
+    <p-button
+      size="large"
+      [style]="{
+        'background-color': 'transparent',
+        color: '#007BFF',
+        border: 'none'
+      }"
+      (click)="sidebarVisible = true"
+      icon="pi pi-bars"
+    ></p-button>
+  </div>
 </header>

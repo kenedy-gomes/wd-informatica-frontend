@@ -4,11 +4,24 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import {ContatoComponent} from './contato/contato.component';
+import {SobreComponent} from './sobre/sobre.component';
+import { PlanosComponent } from './planos/planos.component';
+import { PerfilAdminComponent } from './admin/perfil-admin/perfil-admin.component';
+import { ListagemAdminComponent } from './admin/listagem-admin/listagem-admin.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import {AuthGuard} from "./auth-guard";
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
+    { path: 'sobre', component: SobreComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent }
+    { path: 'register', component: RegisterComponent },
+    { path: 'contato', component: ContatoComponent },
+    { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
+    { path: 'planos', component: PlanosComponent, canActivate: [AuthGuard] },
+    { path: 'admin/perfil', component: PerfilAdminComponent, canActivate: [AuthGuard] },
+    { path: 'admin/listagem', component: ListagemAdminComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

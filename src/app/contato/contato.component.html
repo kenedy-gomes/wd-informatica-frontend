@@ -1,0 +1,83 @@
+<app-header></app-header>
+<body>
+  <div class="container-contato">
+    <div class="horario">
+      <div class="description-text">
+        <h1>vamos conversar.</h1>
+        <h1>conte-me sobre</h1>
+        <h1>sua duvida</h1>
+      </div>
+      <div class="description-text2">
+        <h1>Horario de funcionamento</h1>
+        <p>Segunda a Sexta das 9:00 as 18:00</p>
+      </div>
+
+      <div class="email">
+        <i class="pi pi-envelope"></i>
+        <div class="description-text-email">
+          <p style="color: black">Enviar para</p>
+          <p>wd.2013&#64;gmail.com</p>
+        </div>
+      </div>
+    </div>
+    <div class="container-form">
+      <form (ngSubmit)="onSubmit()" #faleConoscoForm="ngForm">
+        <div class="title-message">
+          <p>Envie sua mensagem.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem">
+          <div class="flex flex-column gap-1">
+            <input
+              pInputText
+              placeholder="Nome completo"
+              id="nome"
+              name="nome"
+              aria-describedby="nome-help"
+              [(ngModel)]="nome"
+            />
+          </div>
+
+          <div class="flex flex-column gap-1">
+            <input
+              pInputText
+              placeholder="Email"
+              id="email"
+              name="email"
+              aria-describedby="email-help"
+              [(ngModel)]="email"
+            />
+          </div>
+
+          <div class="flex flex-column gap-1">
+            <input
+              pInputText
+              id="assunto"
+              placeholder="Assunto"
+              name="assunto"
+              aria-describedby="assunto-help"
+              [(ngModel)]="assunto"
+            />
+          </div>
+
+          <div class="flex flex-column gap-2">
+            <label style="font-weight: 600" for="assunto"
+              >Conte-nos mais sobre sua duvida*</label
+            >
+            <textarea 
+              rows="5" 
+              cols="30" 
+              pInputTextarea 
+              name="mensagem" 
+              [(ngModel)]="mensagem">
+            </textarea>
+          </div>
+
+          <button type="submit" [disabled]="faleConoscoForm.invalid">
+            Enviar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+<app-footer></app-footer>
