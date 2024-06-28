@@ -22,7 +22,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  username?: string;
+  roles?: string;
   userData?: string;
   items: MenuItem[] | undefined;
 
@@ -30,27 +30,57 @@ export class HeaderComponent implements OnInit {
   sidebarVisible: boolean = false;
 
   ngOnInit() {
-    this.items = [
-      {
+    this.setMenuItems();
+  }
+
+  private setMenuItems() {
+    if (this.roles === 'USER') {
+      this.items = [
+        {
           items: [
-              {
-                  label: 'Perfil',
-                  command: () => this.goToProfile(),   
-                  icon: 'pi pi-cog'
-              },
-              {
-                  label: 'Sair',
-                  command: () => this.logout(),
-                  icon: 'pi pi-sign-out'
-              }
+            {
+              label: 'Perfil',
+              command: () => this.goToProfile(),
+              icon: 'pi pi-cog'
+            },
+            {
+              label: 'Sair',
+              command: () => this.logout(),
+              icon: 'pi pi-sign-out'
+            }
           ]
-      }
-  ];
+        }
+      ];
+    } else if (this.roles === 'ADMIN') {
+      this.items = [
+        {
+          items: [
+            {
+              label: 'Perfil',
+              command: () => this.goToProfile(),
+              icon: 'pi pi-cog'
+            },
+            {
+              label: 'Painel',
+              command: () => this.goToPanel(),
+              icon: 'pi pi-th-large'
+            },
+            {
+              label: 'Sair',
+              command: () => this.logout(),
+              icon: 'pi pi-sign-out'
+            }
+          ]
+        }
+      ];
+    }
   }
 
   constructor(private authService: AuthService, private sharedService: SharedService, private cookieService: CookieService, private router: Router) {
     this.userData = this.cookieService.get('name');
     this.userData = this.extractFirstAndSecondName(this.userData);
+    this.roles = this.cookieService.get('role');
+    
   }
 
   private extractFirstAndSecondName(name: string): string {
@@ -69,7 +99,12 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/perfil']);
   }
 
+  goToPanel() {
+    this.router.navigate(['/painel']);
+  }
+
   toggleMenu() {
     this.menuActive = !this.menuActive;
   }
 }
+

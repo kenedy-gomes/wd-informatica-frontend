@@ -14,6 +14,10 @@
               formControlName="name"
               required
             />
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+              <div *ngIf="name.errors?.['required']">Nome é obrigatório.</div>
+              <div *ngIf="name.errors?.['minlength']">Nome precisa ter no mínimo 5 caracteres.</div>
+            </div>
           </div>
           <div class="flex flex-column">
             <input
@@ -23,15 +27,20 @@
               formControlName="email"
               required
             />
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+              <div *ngIf="email.errors?.['required']">Email é obrigatório.</div>
+              <div *ngIf="email.errors?.['email']">Email inválido.</div>
+            </div>
           </div>
           <div class="flex flex-column">
-            <input
+            <p-inputMask 
+            [style]="{width: '100%', padding: '10px'}"
+              mask="99999999999"
               pInputText
-              placeholder="CPF"
               id="cpf"
+              name="cpf"
               formControlName="cpf"
-              required
-            />
+              placeholder="CPF" />
           </div>
           <div class="flex flex-column">
             <input
@@ -42,6 +51,10 @@
               formControlName="password"
               required
             />
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error">
+              <div *ngIf="password.errors?.['required']">Senha é obrigatória.</div>
+              <div *ngIf="password.errors?.['minlength']">Senha precisa ter no mínimo 5 caracteres.</div>
+            </div>
           </div>
           <p>Já possui uma conta? <a href="/login">Clique aqui</a></p>
           <button
@@ -50,6 +63,7 @@
             pRipple
             class="btn"
             style="padding: 10px; width: 50%; margin-top: 10px"
+            [disabled]="registerForm.invalid || loading"
           >
             Entrar
           </button>

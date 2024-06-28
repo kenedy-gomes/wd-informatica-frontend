@@ -5,13 +5,15 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';  // Importando o CommonModule
 import { FooterComponent } from '../footer/footer.component';
 import { ToastModule } from 'primeng/toast';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  imports: [InputTextModule, FloatLabelModule, PasswordModule, ReactiveFormsModule, ButtonModule, FooterComponent, ToastModule],
+  imports: [InputTextModule, FloatLabelModule, PasswordModule, ReactiveFormsModule, ButtonModule, CommonModule, FooterComponent, ToastModule, InputMaskModule],
   styleUrls: ['./register.component.css'],
   standalone: true
 })
@@ -32,11 +34,15 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
       cpf: new FormControl('', [Validators.required, Validators.minLength(11)]),
-      role: new FormControl('USER') 
+      role: new FormControl('USER')
     });
   }
 
   submit() {
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
     this.loading = true;
     setTimeout(() => {
       this.loading = false;

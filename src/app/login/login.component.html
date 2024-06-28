@@ -2,21 +2,22 @@
 <body>
   <div class="container-contato">
     <div class="container-form">
-      <form  #faleConoscoForm="ngForm">
+      <form  [formGroup]="loginForm" (ngSubmit)="submit()">
         <div class="title-message">
           <img  src="/assets/logo-principal-removebg-preview.png" alt="">
         </div>
         <div style="display: flex; flex-direction: column; gap: 10px">
           <div class="flex flex-column">
-            <input
+            <p-inputMask 
+            [style]="{width: '100%', padding: '10px'}"
+              mask="99999999999"
               pInputText
-              placeholder="CPF"
               id="cpf"
               name="cpf"
-              aria-describedby="cpf-help"
-              [(ngModel)]="value"
-            />
+              formControlName="cpf"
+              placeholder="CPF" />
           </div>
+     
           <div class="flex flex-column">
             <input
             type="password"
@@ -25,11 +26,11 @@
             id="password"
             name="password"
             aria-describedby="password-help"
-            [(ngModel)]="value"
+            formControlName="password"
           />
           </div>
           <p>Não possui uma conta? <a href="/register">Clique aqui</a></p>
-          <p-button class="btn" [style]="{padding: '10px', width: '50%', marginTop: '10px'}" label="Entrar" />
+          <p-button type="submit" [disabled]="loginForm.invalid || loading" class="btn" [style]="{padding: '10px', width: '50%', marginTop: '10px'}" label="Entrar" />
         </div>
       </form>
     </div>

@@ -2,7 +2,17 @@
   <div class="logo">
     <img src="/assets/logo-principal-removebg-preview.png" alt="Logo" />
   </div>
-  <nav *ngIf="userData" class="nav-links">
+  <nav *ngIf="userData && roles === 'USER'" class="nav-links">
+    <a routerLink="/">Ofertas</a>
+    <a target="_blank" href="https://www.minhaconexao.com.br">Velocidade</a>
+    <a routerLink="/contato">Fale conosco</a>
+    <div style="display: flex; align-items: center; gap: 10px">
+      <p style="font-weight: bold;">Ola, {{userData}}</p>
+      <p-menu [style]="{padding: '1rem'}" #menu [model]="items" [popup]="true" />
+      <p-avatar [style]="{cursor: 'pointer'}" (click)="menu.toggle($event)" icon="pi pi-user" styleClass="mr-2" size="large" shape="circle"></p-avatar>
+    </div>
+  </nav>
+  <nav *ngIf="userData && roles === 'ADMIN'" class="nav-links">
     <a routerLink="/">Ofertas</a>
     <a target="_blank" href="https://www.minhaconexao.com.br">Velocidade</a>
     <a routerLink="/contato">Fale conosco</a>

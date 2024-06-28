@@ -15,4 +15,5 @@ export class SharedService {
   getData(): any {
     return this.data;
   }
+
 }

@@ -5,23 +5,30 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthModel } from './model/registerModel/AuthModel';
 import { Register } from './model/registerModel/register';
+import { Login} from './model/registerModel/login';
 import { Router } from '@angular/router';
+import {ToastrService} from "ngx-toastr";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private authUrl = `${environment.apiRegister}`;
+  private authUrlRegister = `${environment.apiRegister}`;
+  private AuthUrlLogin = `${environment.apiLogin}`
 
-  constructor(private http: HttpClient, private cookieService: CookieService, private router: Router) {}
+  constructor(private http: HttpClient, private cookieService: CookieService, private router: Router, private toastr: ToastrService) {}
 
-  login(email: string, password: string): Observable<any> {
+ async login(loginModel: Login) {
+    this.deleteCookies();
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>(
-      this.authUrl,
-      { email, password },
-      { headers: headers }
-    );
+    this.http.post(this.AuthUrlLogin, loginModel, { headers }).subscribe(
+      async (response) => {
+        await this.setCookies(response);
+        await this.toastr.success('Login realizado com sucesso!');
+        const model = await Object.assign(new AuthModel(), response);
+        await this.navigate(model.role);
+      }
+    )
   }
 
   async register(registerModel: Register) {
@@ -29,9 +36,10 @@ export class AuthService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = JSON.stringify(registerModel);
 
-    this.http.post(this.authUrl, body, { headers }).subscribe(
+    this.http.post(this.authUrlRegister, body, { headers }).subscribe(
       async (response) => {
         await this.setCookies(response);
+        await this.toastr.success('Cadastrado com sucesso!');
         const model = await Object.assign(new AuthModel(), response);
         await this.navigate(model.role); 
       },
@@ -59,7 +67,7 @@ export class AuthService {
     this.cookieService.delete('authToken');
     this.cookieService.delete('name');
     this.cookieService.delete('role');
-    window.location.reload();
+    this.router.navigateByUrl('/login');
   }
 
   private isTokenValid(token: string): boolean {
