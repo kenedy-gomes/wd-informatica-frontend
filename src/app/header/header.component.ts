@@ -6,7 +6,7 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../service/auth.service';
 import { SharedService } from '../service/shared.service';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
@@ -43,6 +43,13 @@ export class HeaderComponent implements OnInit {
               command: () => this.goToProfile(),
               icon: 'pi pi-cog'
             },
+
+            {
+              label: 'Meus dados',
+              command: () => this.goToPanel(),
+              icon: 'pi pi-th-large'
+            },
+
             {
               label: 'Sair',
               command: () => this.logout(),
@@ -100,7 +107,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToPanel() {
-    this.router.navigate(['/painel']);
+    this.router.navigate(['/planos']);
   }
 
   toggleMenu() {

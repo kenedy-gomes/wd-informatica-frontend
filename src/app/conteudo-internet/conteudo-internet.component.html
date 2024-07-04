@@ -1,17 +1,17 @@
-<div class="grid-container gap-5">
-     <div class="grid-item">
+<div  class="grid-container gap-5">
+     <div *ngFor="let plano of data" class="grid-item">
         <div>
-            <h1>50 Megas</h1>
-            <p>de internet com wi-fi e instalação grátis</p>
+            <h1>{{plano.megas}}</h1>
+            <p>{{plano.description}}</p>
         </div>
             
         <div>
-            <p>R$ 50,00/mês</p>
-             <a class="btn" href="">Consultar</a>
+            <p>{{plano.plano}}</p>
+             <a class="btn" href="">Ver plano</a>
         </div>
             
         <div>
-            <p>Serviços incluídos: Roteador, Instalação e Manutenção</p>
+            <p>{{plano.servicos}}</p>
             <div class="flex gap-2 align-items-center">
                 <i class="pi pi-wifi"></i>
                 <i class="pi pi-wrench"></i>
@@ -20,78 +20,6 @@
             </div>
         </div>
      </div>
-
-     <div class="grid-item">
-        <div>
-            <h1>100 Megas</h1>
-            <p>de internet com wi-fi e instalação grátis</p>
-        </div>
-            
-        <div>
-            <p>R$ 60,00/mês</p>
-             <a class="btn" href="">Consultar</a>
-        </div>
-            
-        <div>
-            <p>Serviços incluídos: Roteador, Instalação e Manutenção</p>
-            <div class="flex gap-2 align-items-center">
-                <i class="pi pi-wifi"></i>
-                <i class="pi pi-wrench"></i>
-                <i class="pi pi-cog"></i>
-                <img style="width: 20px;" src="/assets/icons8-roteador-24.png" alt="img">
-            </div>
-        </div>
-     </div>
-
-     <div class="grid-item">
-        <div>
-            <h1>200 Megas</h1>
-            <p>de internet com wi-fi e instalação grátis</p>
-        </div>
-            
-        <div>
-            <p>R$ 80,00/mês</p>
-             <a class="btn" href="">Consultar</a>
-        </div>
-            
-        <div>
-            <p>Serviços incluídos: Roteador, Instalação e Manutenção</p>
-            <div class="flex gap-2 align-items-center">
-                <i class="pi pi-wifi"></i>
-                <i class="pi pi-wrench"></i>
-                <i class="pi pi-cog"></i>
-                <img style="width: 20px;" src="/assets/icons8-roteador-24.png" alt="img">
-            </div>
-        </div>
-     </div>
-
-     <div style="border: 1px solid #072063; position: relative;" class="grid-item">
-        <div class="oferta-mais">
-            OFERTA IMPERDÍVEL: R$30 OFF
-        </div>
-    
-        <div>
-            <h1>300 Megas</h1>
-            <p>de internet com wi-fi e instalação grátis</p>
-        </div>
-            
-        <div>
-            <p style="text-decoration: line-through; font-size: 10px; margin: 0;">De 150,00</p>
-            <p>R$ 120,00/mês</p>
-            <a class="btn" href="">Consultar</a>
-        </div>
-            
-        <div>
-            <p>Serviços incluídos: Roteador, Instalação e Manutenção</p>
-            <div class="flex gap-2 align-items-center">
-                <i class="pi pi-wifi"></i>
-                <i class="pi pi-wrench"></i>
-                <i class="pi pi-cog"></i>
-                <img style="width: 20px;" src="/assets/icons8-roteador-24.png" alt="img">
-            </div>
-        </div>
-    </div>
-    
 </div>
 <div class="oferta">
     <p>

@@ -6,28 +6,32 @@
     <a routerLink="/">Ofertas</a>
     <a target="_blank" href="https://www.minhaconexao.com.br">Velocidade</a>
     <a routerLink="/contato">Fale conosco</a>
+    <a routerLink="/planos">Meu plano</a>
     <div style="display: flex; align-items: center; gap: 10px">
       <p style="font-weight: bold;">Ola, {{userData}}</p>
-      <p-menu [style]="{padding: '1rem'}" #menu [model]="items" [popup]="true" />
-      <p-avatar [style]="{cursor: 'pointer'}" (click)="menu.toggle($event)" icon="pi pi-user" styleClass="mr-2" size="large" shape="circle"></p-avatar>
+      <p-menu #menu [model]="items" [popup]="true" />
+      <p-avatar [style]="{cursor: 'pointer'}" (click)="menu.toggle($event)" pBadge  size="large" shape="circle"  image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" ></p-avatar>
     </div>
   </nav>
+
+  <nav *ngIf="!userData" class="nav-links">
+    <a routerLink="/">Ofertas</a>
+    <a target="_blank" href="https://www.minhaconexao.com.br">Velocidade</a>
+    <a routerLink="/contato">Fale conosco</a>
+    <a class="area-cliente" routerLink="/login">Área do cliente</a>
+  </nav>
+
   <nav *ngIf="userData && roles === 'ADMIN'" class="nav-links">
     <a routerLink="/">Ofertas</a>
     <a target="_blank" href="https://www.minhaconexao.com.br">Velocidade</a>
     <a routerLink="/contato">Fale conosco</a>
     <div style="display: flex; align-items: center; gap: 10px">
       <p style="font-weight: bold;">Ola, {{userData}}</p>
-      <p-menu [style]="{padding: '1rem'}" #menu [model]="items" [popup]="true" />
-      <p-avatar [style]="{cursor: 'pointer'}" (click)="menu.toggle($event)" icon="pi pi-user" styleClass="mr-2" size="large" shape="circle"></p-avatar>
+      <p-menu  #menu [model]="items" [popup]="true" />
+      <p-avatar [style]="{cursor: 'pointer'}" (click)="menu.toggle($event)"  styleClass="mr-2" size="large" shape="circle"  image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" ></p-avatar>
     </div>
   </nav>
-  <nav *ngIf="!userData" class="nav-links">
-    <a routerLink="/">Ofertas</a>
-    <a target="_blank" href="https://www.minhaconexao.com.br">Velocidade</a>
-    <a routerLink="/contato">Fale conosco</a>
-    <a routerLink="/login">Área do cliente</a>
-  </nav>
+
 
   <div class="hamburger">
     <p-sidebar

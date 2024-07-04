@@ -5,6 +5,7 @@
   padding: 10px 50px;  
   border-bottom: 3px solid #e4e4e4;
   position: relative;
+  background-color: navy;
 }
 
 .logo img{
@@ -24,12 +25,14 @@
   gap: 50px;
   list-style: none;
   align-items: center;
+  color: white;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: black;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 16px;
+  color: white;
 }
 
 .login p a{
@@ -61,7 +64,7 @@
 }
 
 
-.nav-links a:nth-child(4){
+.nav-links .area-cliente{
   border: 1px solid #007BFF;
   padding: 10px 20px;
   border-radius: 6px;
@@ -70,11 +73,11 @@
   background-color: #007BFF;
 }
 
-.nav-links a:nth-child(5):hover{
-  background-color: #007BFF;
-  transition: 0.5s;
+.nav-links .area-cliente:hover{
+  color: white;
+  text-decoration: none;
 }
- 
+
 .hamburger {
   display: none;
   font-size: 24px;
@@ -109,6 +112,14 @@
   width: 40%;
   border-radius: 6px;
 }
+ 
+.submenu-header {
+  padding: 0px !important;
+}
+
+:host ::ng-deep .p-menu .p-submenu-header{ 
+  padding: 0px !important;
+} 
  
 @media (max-width: 925px) {
   .header {

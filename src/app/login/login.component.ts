@@ -7,9 +7,10 @@ import { ButtonModule } from 'primeng/button';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../service/auth.service';
 import {Login} from '../model/registerModel/login';
 import { InputMaskModule } from 'primeng/inputmask';
+
 
 @Component({
   selector: 'app-login',

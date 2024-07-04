@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { environment } from './environments/environment';
+import { environment } from '../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AuthModel } from './model/registerModel/AuthModel';
-import { Register } from './model/registerModel/register';
-import { Login} from './model/registerModel/login';
+import { AuthModel } from '../model/registerModel/AuthModel';
+import { Register } from '../model/registerModel/register';
+import { Login} from '../model/registerModel/login';
 import { Router } from '@angular/router';
 import {ToastrService} from "ngx-toastr";
 
@@ -27,7 +26,11 @@ export class AuthService {
         await this.toastr.success('Login realizado com sucesso!');
         const model = await Object.assign(new AuthModel(), response);
         await this.navigate(model.role);
-      }
+      }, 
+      (error) => {
+        console.error('Error', error.error);
+         this.toastr.error('Dados incorretos!');
+      }  
     )
   }
 
@@ -45,6 +48,7 @@ export class AuthService {
       },
       (error) => {
         console.error('Error', error.error);
+        this.toastr.error('Não foi possivel efetuar o cadastro!');
       }
     );
   }
@@ -67,7 +71,7 @@ export class AuthService {
     this.cookieService.delete('authToken');
     this.cookieService.delete('name');
     this.cookieService.delete('role');
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/');
   }
 
   private isTokenValid(token: string): boolean {
