@@ -51,23 +51,24 @@
               placeholder="CPF"
             ></p-inputMask>
           </div>
+          
           <div class="flex flex-column">
             <p-calendar
               [showIcon]="true" 
               placeholder="Data de Nascimento"
-              id="nascimento"
-              name="nascimento"
+              id="data_nascimento"
+              name="data_nascimento"
               [style]="{ width: '100%' }"
-              formControlName="nascimento"
+              formControlName="data_nascimento"
             ></p-calendar>
             <div
-              *ngIf="nascimento.invalid && (nascimento.dirty || nascimento.touched)"
+              *ngIf="data_nascimento.invalid && (data_nascimento.dirty || data_nascimento.touched)"
               class="error"
             >
-              <div *ngIf="nascimento.errors?.['required']">
+              <div *ngIf="data_nascimento.errors?.['required']">
                 Data de nascimento é obrigatória.
               </div>
-              <div *ngIf="nascimento.errors?.['nascimento']">
+              <div *ngIf="data_nascimento.errors?.['data_nascimento']">
                 Data de nascimento inválida.
               </div>
             </div>

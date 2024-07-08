@@ -19,9 +19,16 @@ export class AuthService {
 
   constructor(private http: HttpClient, private cookieService: CookieService, private router: Router, private toastr: ToastrService, private sharedService: SharedService) {}
 
+  setHeadersForBearer() {
+    return new HttpHeaders({
+        'Authorization': 'Bearer ' + this.cookieService.get('authToken'),
+        'Content-Type': 'application/json'
+    });
+}
+
  async login(loginModel: Login) {
     this.deleteCookies();
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = this.setHeadersForBearer(); 
     this.http.post(this.AuthUrlLogin, loginModel, { headers }).subscribe(
       async (response) => {
         await this.setCookies(response);

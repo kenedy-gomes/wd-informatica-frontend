@@ -11,17 +11,19 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { CookieService } from 'ngx-cookie-service';
 import { SharedService } from '../service/shared.service';
 import { PerfilService } from '../service/perfil.service';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, CardModule, ButtonModule, KeyFilterModule, FormsModule, InputTextModule, AvatarModule, AvatarGroupModule],
+  imports: [HeaderComponent, FooterComponent, CardModule, ButtonModule, KeyFilterModule, FormsModule, InputTextModule, AvatarModule, AvatarGroupModule, CommonModule],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css'
 })
 export class PerfilComponent implements OnInit {
   roles?: string;
   userData?: string;
+  userProfile?: any;
 
 
   constructor( private cookieService: CookieService, private sharedService: SharedService, private perfilService: PerfilService) {
@@ -37,7 +39,24 @@ export class PerfilComponent implements OnInit {
 
   loadUserProfile(){
     this.perfilService.getUserProfile().subscribe((response) => {
-      console.log(response)
-    })
+      this.userProfile = response;    
+      console.log('User Profile', this.userProfile);
+      if(this.userProfile && this.userProfile.data_nascimento){
+        this.userProfile.data_nascimento = this.formatarData(this.userProfile.data_nascimento);
+      }
+     })
   }  
+
+  formatarData(data: string): string {
+    const dataNascimento = new Date(data);
+    const ano = dataNascimento.getUTCFullYear();
+    const mes = dataNascimento.getUTCMonth() + 1; // Mês é zero-indexado
+    const dia = dataNascimento.getUTCDate();
+
+    return `${this.pad(dia)}/${this.pad(mes)}/${ano}`;
+  }
+
+  pad(n: number): string {
+    return n < 10 ? '0' + n : n.toString();
+  }
 }

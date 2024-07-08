@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
       cpf: new FormControl('', [Validators.required, Validators.minLength(11), Validators.pattern('^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$')]),
-      nascimento: new FormControl('', [Validators.required]),
+      data_nascimento: new FormControl('', [Validators.required]),
       sexo: new FormControl('', [Validators.required]),
       role: new FormControl('USER')
     });
@@ -66,8 +66,6 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.loading = true;
-    const formValues = { ...this.registerForm.value };
-    formValues.nascimento = formatDate(this.nascimento.value, 'yyyy-MM-dd', 'en-US');
     setTimeout(() => {
       this.loading = false;
     }, 2000);
@@ -90,8 +88,8 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('cpf')!;
   }
 
-  get nascimento() {
-    return this.registerForm.get('nascimento')!;
+  get data_nascimento() {
+    return this.registerForm.get('data_nascimento')!;
   }
 
   get sexo() {

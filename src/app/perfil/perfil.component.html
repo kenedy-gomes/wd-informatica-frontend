@@ -19,7 +19,7 @@
             </p>
           </div>
         </div>
-        <div class="form">
+        <div *ngIf="userProfile" class="form">
           <p>EDITE SEUS DADOS PESSOAIS</p>
           <div class="card">
             <div class="flex flex-wrap gap-3 mb-4">
@@ -28,27 +28,27 @@
                   Nome Completo
           
                 </label>
-                <input pInputText class="w-full" />
+                <input [(ngModel)]="userProfile.name" pInputText class="w-full" />
               </div>
               <div class="flex-auto">
                 <label for="text" class="font-bold block mb-2"> Email </label>
-                <input pInputText class="w-full" />
+                <input [(ngModel)]="userProfile.email" pInputText class="w-full" />
               </div>
             </div>
             <div class="flex flex-wrap gap-3">
               <div class="flex-auto">
                 <label for="number" class="font-bold block mb-2"> CPF </label>
-                <input pInputText id="number" class="w-full" />
+                <input [(ngModel)]="userProfile.cpf" pInputText id="number" class="w-full" />
               </div>
               <div class="flex-auto">
                 <label for="alphabetic" class="font-bold block mb-2">
                   Data Nascimento</label
                 >
-                <input pInputText class="w-full" />
+                <input [(ngModel)]="userProfile.data_nascimento" pInputText class="w-full" />
               </div>
               <div class="flex-auto">
                 <label for="text" class="font-bold block mb-2"> Sexo </label>
-                <input pInputText class="w-full" />
+                <input [(ngModel)]="userProfile.sexo" pInputText class="w-full" />
               </div>
             </div>
           </div>

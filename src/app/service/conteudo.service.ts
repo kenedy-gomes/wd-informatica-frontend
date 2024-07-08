@@ -9,7 +9,7 @@ export class ConteudoService {
   data: any;
    private GetPlanos = `${environment.apiPlanos}`
   constructor(private http: HttpClient, ) { }
-
+ 
   getConteudo() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.get<any>(this.GetPlanos, { headers }); 
