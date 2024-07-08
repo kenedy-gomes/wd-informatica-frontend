@@ -107,7 +107,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToPanel() {
-    this.router.navigate(['/planos']);
+    this.router.navigate(['/admin/painel']);
   }
 
   toggleMenu() {

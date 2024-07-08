@@ -7,7 +7,8 @@ import { Register } from '../model/registerModel/register';
 import { Login} from '../model/registerModel/login';
 import { Router } from '@angular/router';
 import {ToastrService} from "ngx-toastr";
-
+import { SharedService } from './shared.service';
+;
 @Injectable({
   providedIn: 'root',
 })
@@ -15,7 +16,8 @@ export class AuthService {
   private authUrlRegister = `${environment.apiRegister}`;
   private AuthUrlLogin = `${environment.apiLogin}`
 
-  constructor(private http: HttpClient, private cookieService: CookieService, private router: Router, private toastr: ToastrService) {}
+
+  constructor(private http: HttpClient, private cookieService: CookieService, private router: Router, private toastr: ToastrService, private sharedService: SharedService) {}
 
  async login(loginModel: Login) {
     this.deleteCookies();
@@ -26,6 +28,7 @@ export class AuthService {
         await this.toastr.success('Login realizado com sucesso!');
         const model = await Object.assign(new AuthModel(), response);
         await this.navigate(model.role);
+        console.log(response)
       }, 
       (error) => {
         console.error('Error', error.error);
@@ -58,7 +61,7 @@ export class AuthService {
     if (role === 'USER') {
         await this.router.navigateByUrl('/planos')
     } if (role === 'ADMIN') {
-        await this.router.navigateByUrl('/admin/perfil')
+        await this.router.navigateByUrl('/admin/painel')
     }
 }
 
@@ -106,4 +109,6 @@ export class AuthService {
     this.cookieService.delete('name');
     this.cookieService.delete('role');
   }
+
+
 }

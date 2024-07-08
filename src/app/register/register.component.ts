@@ -9,23 +9,43 @@ import { CommonModule } from '@angular/common';  // Importando o CommonModule
 import { FooterComponent } from '../footer/footer.component';
 import { ToastModule } from 'primeng/toast';
 import { InputMaskModule } from 'primeng/inputmask';
+import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
+import { formatDate } from '@angular/common';
+
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  imports: [InputTextModule, FloatLabelModule, PasswordModule, ReactiveFormsModule, ButtonModule, CommonModule, FooterComponent, ToastModule, InputMaskModule],
+  imports: [
+    InputTextModule,
+    FloatLabelModule,
+    PasswordModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    CommonModule,
+    FooterComponent,
+    ToastModule,
+    InputMaskModule,
+    CalendarModule,
+    DropdownModule
+  ],
   styleUrls: ['./register.component.css'],
   standalone: true
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   loading: boolean = false;
+  sexOptions = [
+    { label: 'Masculino', value: 'Masculino' },
+    { label: 'Feminino', value: 'Feminino' }
+  ];
 
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.deleteCookies();
-    this.createForm();
+    this.createForm();    
   }
 
   private createForm() {
@@ -33,7 +53,9 @@ export class RegisterComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      cpf: new FormControl('', [Validators.required, Validators.minLength(11)]),
+      cpf: new FormControl('', [Validators.required, Validators.minLength(11), Validators.pattern('^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$')]),
+      nascimento: new FormControl('', [Validators.required]),
+      sexo: new FormControl('', [Validators.required]),
       role: new FormControl('USER')
     });
   }
@@ -44,6 +66,8 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.loading = true;
+    const formValues = { ...this.registerForm.value };
+    formValues.nascimento = formatDate(this.nascimento.value, 'yyyy-MM-dd', 'en-US');
     setTimeout(() => {
       this.loading = false;
     }, 2000);
@@ -64,5 +88,13 @@ export class RegisterComponent implements OnInit {
 
   get cpf() {
     return this.registerForm.get('cpf')!;
+  }
+
+  get nascimento() {
+    return this.registerForm.get('nascimento')!;
+  }
+
+  get sexo() {
+    return this.registerForm.get('sexo')!;
   }
 }

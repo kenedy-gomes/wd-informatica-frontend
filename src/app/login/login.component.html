@@ -8,13 +8,14 @@
         </div>
         <div style="display: flex; flex-direction: column; gap: 10px">
           <div class="flex flex-column">
-            <p-inputMask 
-            [style]="{width: '100%'}"
-              mask="99999999999"
+            <p-inputMask
+              [style]="{ width: '100%' }"
+              mask="999.999.999-99"
               id="cpf"
               name="cpf"
               formControlName="cpf"
-              placeholder="CPF" />
+              placeholder="CPF"
+            ></p-inputMask>
           </div>
           <div class="flex flex-column">
             <input

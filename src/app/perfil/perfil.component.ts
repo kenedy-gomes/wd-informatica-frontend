@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {HeaderComponent} from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +9,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { CookieService } from 'ngx-cookie-service';
+import { SharedService } from '../service/shared.service';
+import { PerfilService } from '../service/perfil.service';
 
 @Component({
   selector: 'app-perfil',
@@ -17,17 +19,25 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css'
 })
-export class PerfilComponent {
+export class PerfilComponent implements OnInit {
   roles?: string;
   userData?: string;
 
-  constructor( private cookieService: CookieService) {
+
+  constructor( private cookieService: CookieService, private sharedService: SharedService, private perfilService: PerfilService) {
     this.roles = this.cookieService.get('role');
-    if (this.roles === 'USER') {
+    if (this.roles === 'USER' || this.roles === 'ADMIN') {
       this.userData = this.cookieService.get('name').toUpperCase();
     }
   }
 
+  ngOnInit(): void {
+    this.loadUserProfile(); 
+  }
 
-
+  loadUserProfile(){
+    this.perfilService.getUserProfile().subscribe((response) => {
+      console.log(response)
+    })
+  }  
 }

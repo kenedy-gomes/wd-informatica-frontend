@@ -14,9 +14,14 @@
               formControlName="name"
               required
             />
-            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+            <div
+              *ngIf="name.invalid && (name.dirty || name.touched)"
+              class="error"
+            >
               <div *ngIf="name.errors?.['required']">Nome é obrigatório.</div>
-              <div *ngIf="name.errors?.['minlength']">Nome precisa ter no mínimo 5 caracteres.</div>
+              <div *ngIf="name.errors?.['minlength']">
+                Nome precisa ter no mínimo 5 caracteres.
+              </div>
             </div>
           </div>
           <div class="flex flex-column">
@@ -27,20 +32,63 @@
               formControlName="email"
               required
             />
-            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+            <div
+              *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="error"
+            >
               <div *ngIf="email.errors?.['required']">Email é obrigatório.</div>
               <div *ngIf="email.errors?.['email']">Email inválido.</div>
             </div>
           </div>
+
           <div class="flex flex-column">
-            <p-inputMask 
-            [style]="{width: '100%'}"
-              mask="99999999999"
+            <p-inputMask
+              [style]="{ width: '100%' }"
+              mask="999.999.999-99"
               id="cpf"
               name="cpf"
               formControlName="cpf"
-              placeholder="CPF" />
+              placeholder="CPF"
+            ></p-inputMask>
           </div>
+          <div class="flex flex-column">
+            <p-calendar
+              [showIcon]="true" 
+              placeholder="Data de Nascimento"
+              id="nascimento"
+              name="nascimento"
+              [style]="{ width: '100%' }"
+              formControlName="nascimento"
+            ></p-calendar>
+            <div
+              *ngIf="nascimento.invalid && (nascimento.dirty || nascimento.touched)"
+              class="error"
+            >
+              <div *ngIf="nascimento.errors?.['required']">
+                Data de nascimento é obrigatória.
+              </div>
+              <div *ngIf="nascimento.errors?.['nascimento']">
+                Data de nascimento inválida.
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-column">
+            <p-dropdown
+              [options]="sexOptions"
+              formControlName="sexo"
+              placeholder="Sexo"
+              optionLabel="label"
+              optionValue="value"
+            ></p-dropdown>
+            <div
+              *ngIf="sexo.invalid && (sexo.dirty || sexo.touched)"
+              class="error"
+            >
+              <div *ngIf="sexo.errors?.['required']">Sexo é obrigatório.</div>
+            </div>
+          </div>
+
           <div class="flex flex-column">
             <input
               type="password"
@@ -50,11 +98,19 @@
               formControlName="password"
               required
             />
-            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error">
-              <div *ngIf="password.errors?.['required']">Senha é obrigatória.</div>
-              <div *ngIf="password.errors?.['minlength']">Senha precisa ter no mínimo 5 caracteres.</div>
+            <div
+              *ngIf="password.invalid && (password.dirty || password.touched)"
+              class="error"
+            >
+              <div *ngIf="password.errors?.['required']">
+                Senha é obrigatória.
+              </div>
+              <div *ngIf="password.errors?.['minlength']">
+                Senha precisa ter no mínimo 5 caracteres.
+              </div>
             </div>
           </div>
+
           <p>Já possui uma conta? <a href="/login">Clique aqui</a></p>
           <button
             type="submit"
