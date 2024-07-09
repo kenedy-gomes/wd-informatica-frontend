@@ -33,7 +33,7 @@
                   id="name"
                   name="name"
                   [(ngModel)]="userProfile.name"
-                 />
+                />
               </div>
               <div class="flex-auto">
                 <label for="text" class="font-bold block mb-2"> Email </label>
@@ -42,9 +42,8 @@
                   class="w-full"
                   id="email"
                   name="email"
-      
                   [(ngModel)]="userProfile.email"
-                 />
+                />
               </div>
             </div>
             <div class="flex flex-wrap gap-3">
@@ -56,10 +55,12 @@
                   class="w-full"
                   name="cpf"
                   [(ngModel)]="userProfile.cpf"
-                 />
+                />
               </div>
               <div class="flex-auto">
-                <label for="text" class="font-bold block mb-2"> Data de nascimento </label>
+                <label for="text" class="font-bold block mb-2">
+                  Data de nascimento
+                </label>
                 <p-calendar
                   [showIcon]="true"
                   dateFormat="dd/mm/yy"
@@ -67,23 +68,31 @@
                   id="data_nascimento"
                   name="data_nascimento"
                   [style]="{ width: '100%' }"
+                 
                   [(ngModel)]="userProfile.data_nascimento"
-                 ></p-calendar>
+                ></p-calendar>
               </div>
 
               <div class="flex-auto">
                 <label for="text" class="font-bold block mb-2"> Sexo </label>
-                <input
-                  pInputText
-                  class="w-full"
+                <p-dropdown
                   id="sexo"
                   name="sexo"
+                  [style]="{ width: '100%' }"
+                  [options]="sexOptions"
                   [(ngModel)]="userProfile.sexo"
-                />
+                  placeholder="Sexo"
+                  optionLabel="label"
+                  optionValue="value"
+                ></p-dropdown>
               </div>
             </div>
           </div>
-          <p-button (click)="update()"  [style]="{ marginTop: '20px' }" label="Editar" />
+          <p-button
+            (click)="update()"
+            [style]="{ marginTop: '20px' }"
+            label="Editar"
+          />
         </div>
       </div>
     </div>

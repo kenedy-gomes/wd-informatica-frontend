@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
             },
 
             {
-              label: 'Meus dados',
+              label: 'Meu plano',
               command: () => this.goToPanel(),
               icon: 'pi pi-th-large'
             },
@@ -108,6 +108,10 @@ export class HeaderComponent implements OnInit {
 
   goToPanel() {
     this.router.navigate(['/admin/painel']);
+  }
+
+  goToPlanos() {
+    this.router.navigate(['/planos']);
   }
 
   toggleMenu() {

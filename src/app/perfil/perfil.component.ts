@@ -13,6 +13,9 @@ import { PerfilService } from '../service/perfil.service';
 import { CommonModule } from '@angular/common';
 import { CalendarModule } from 'primeng/calendar'; 
 import {Update} from '../model/UpdateModel'
+import { DropdownModule } from 'primeng/dropdown';
+import { NgModule, LOCALE_ID } from '@angular/core';
+
 
 @Component({
   selector: 'app-perfil',
@@ -29,6 +32,7 @@ import {Update} from '../model/UpdateModel'
     AvatarGroupModule,
     CommonModule,
     CalendarModule,
+    DropdownModule,
     
   ],
   templateUrl: './perfil.component.html',
@@ -39,16 +43,23 @@ export class PerfilComponent implements OnInit {
   userData?: string;
   userProfile!: Update;
   loading: boolean = false;
+ 
+  sexOptions = [
+    { label: 'Masculino', value: 'Masculino' },
+    { label: 'Feminino', value: 'Feminino' }
+  ];
 
   constructor(
     private cookieService: CookieService,
     private perfilService: PerfilService, 
   ) {
+  
     this.roles = this.cookieService.get('role');
     if (this.roles === 'USER' || this.roles === 'ADMIN') {
       this.userData = this.cookieService.get('name').toUpperCase();
     }
   }
+
 
   ngOnInit(): void {
     this.loadUserProfile();

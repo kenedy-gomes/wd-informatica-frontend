@@ -35,6 +35,7 @@ import { DropdownModule } from 'primeng/dropdown';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   loading: boolean = false;
+  
   sexOptions = [
     { label: 'Masculino', value: 'Masculino' },
     { label: 'Feminino', value: 'Feminino' }
