@@ -1,3 +1,176 @@
+ 
+
+h2{
+    font-size: 16px;
+}
+
 body{
     height: 100vh;
+}
+
+@media screen and (max-width: 475px) {
+  body {
+    height: 100%;
+  }
+
+}
+
+
+body h1{
+    text-align: left;
+    margin: 0;
+}
+
+.header h1{
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.grid-container{
+    margin-top: 8rem;
+}
+
+@media screen and (max-width: 475px) {
+    .grid-container{
+       margin: 20px 0px 50px 0px;
+    }
+}
+
+.grid-item{
+    width: 70%;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+@media screen and (max-width: 1290px) {
+    .grid-item{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .grid-item{
+        width: 90%;
+    }
+}
+
+.cont-grid{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.cont-grid-2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.whatsapp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp button{
+    background-color: #25D366;
+    color: white;
+    border-radius: 30px;
+    padding: 18px;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    justify-content: center;
+    width: 200px;
+}
+
+.container-whatsapp{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 30px 0px 20px 0px;
+}
+
+@media screen and (max-width: 475px) {
+    .container-whatsapp{
+        display: inline;
+    }
+}
+
+.container-img{
+    width: 20px;
+    height: 50px;
+    display: flex;
+}
+
+.wifi{
+    display: flex;
+    gap: 1rem;
+}
+
+.wifi i{
+    color: navy;
+    font-weight: bold;
+}
+
+.img-logo-modal{
+    width: 100px;
+ 
+}
+
+.valor{
+   text-align: left;
+   padding: 20px 20px 20px 20px; 
+}
+
+.valor Strong{
+    color: navy;
+}
+
+.custo{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 20px 10px 20px;
+}
+
+.custo Strong{
+    color: black;
+}
+
+.fidelidade{
+    text-align: left;
+    padding: 20px 20px 20px 20px; 
+}
+ 
+.fidelidade Strong{
+    color: navy;
+}
+
+.internet{
+    text-align: left;
+    padding: 20px 20px 20px 20px; 
+}
+
+.internet Strong{
+    color: navy;
+}
+
+ul{
+    margin: 0;
 }

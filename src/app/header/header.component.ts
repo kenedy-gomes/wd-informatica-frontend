@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
 
             {
               label: 'Meu plano',
-              command: () => this.goToPanel(),
+              command: () => this. goToPlanos(),
               icon: 'pi pi-th-large'
             },
 

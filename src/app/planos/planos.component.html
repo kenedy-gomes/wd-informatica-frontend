@@ -1,13 +1,125 @@
 <app-header></app-header>
 <body>
-    <div class="container-planos">
-        <h1>Plano atual</h1>
-        <div>
-            <p>Plano: 150 Megas</p>
-            <p>R$ 120,00/mês</p>
-            <a class="btn" href="">Alterar</a>
-        </div>
+  <div class="header">
+    <h1>Plano atual</h1>
+  </div>
 
+  <div class="grid-container gap-5">
+    <div class="grid-item">
+      <div class="cont-grid">
+        <div>
+          <p>WD FIBRA</p>
+        </div>
+        <div>
+          <div class="flex gap-2 align-items-center">
+            <p>Serviços incluídos:</p>
+            <i class="pi pi-wifi"></i>
+            <i class="pi pi-wrench"></i>
+            <i class="pi pi-cog"></i>
+            <img
+              style="width: 20px"
+              src="/assets/icons8-roteador-24.png"
+              alt="img"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container-whatsapp">
+        <div class="container-img">
+            <img src="/assets/wdc-networks-lvtc3.png" alt="">
+        </div>
+        <div>
+            <p-button label="Alterar Plano" iconPos="right" icon="pi pi-pencil" />
+        </div>
+      </div>
+      <div class="cont-grid-2">
+        <div>
+          <h2>200 MBPS</h2>
+          <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+            <p>Download: 200MBPS</p>
+            <p>Upload: 200MBPS</p>
+          </div>
+        </div>
+        <div>
+          <h2>Fidelidade</h2>
+          <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+            <p>Sem fidelidade</p>
+          </div>
+         
+        </div>
+        <div>
+          <h2>Instalação</h2>
+          <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+            <p>Gratis</p>
+          </div>
+        
+        </div>
+        <div>
+          <h2>Manutenção</h2>
+          <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+            <p>Gratuita</p>
+          </div>
+        </div>
+        <div>
+            <h2>Valores</h2>
+            <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                <p>R$ 150,00/mes</p>
+            </div>
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div class="card flex justify-content-center">
+            <p-sidebar  position="right" [(visible)]="sidebarVisible">
+                <div style="display: flex;
+                justify-content: center;
+                align-items: center;">
+                    <img class="img-logo-modal" src="/assets/wdc-networks-lvtc3.png" alt="">
+                </div>
+                <div style="display: flex;
+                justify-content: center;
+                align-items: center;">
+                    <h3>WD FIBRA 200 MEGAS</h3>
+                </div>
+                
+                <div class="wifi">
+                    <i class="pi pi-wifi" style="font-size: 1.5rem"></i>
+                    <p><Strong>200 Megas</Strong> de internet</p>
+                </div>
+                <div class="valor">
+                    <hr>
+                    <Strong>Plano atual</Strong>
+                    <ul class="custo">
+                        <li>Instalação Gratuita</li>
+                        <li>Manutenção Gratuita</li>
+                        <li>suporte 24hrs</li>
+                        <li><Strong>Custo/Mês : R$ 99,90</Strong></li>
+                    </ul>
+                    <hr>
+                </div>
+                <div class="fidelidade">
+                    <Strong>Fidelidade</Strong>
+                    <ul class="custo">
+                        <li>Sem tempo de fidelidade</li>
+                        <li>Sem taxa de cancelamento</li>
+                    </ul>
+                    <hr>
+                </div>
+                <div class="internet">
+                    <Strong>Internet</Strong>
+                    <ul class="custo">
+                        <li>200 megas Download</li>
+                        <li>200 megas Upload</li>
+                    </ul>
+                    <hr>
+                </div>
+                <div class="whatsapp">
+                    <button  class="pi pi-whatsapp"> Falar conosco </button>
+                </div>
+            </p-sidebar>
+        </div>    
+        <p-button iconPos="right" label="Ver detalhes" (click)="sidebarVisible = true" icon="pi pi-arrow-right"/>
+      </div>
     </div>
+  </div>
 </body>
 <app-footer></app-footer>
