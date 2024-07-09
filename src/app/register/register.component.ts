@@ -11,7 +11,6 @@ import { ToastModule } from 'primeng/toast';
 import { InputMaskModule } from 'primeng/inputmask';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
-import { formatDate } from '@angular/common';
 
 
 @Component({
@@ -95,4 +94,6 @@ export class RegisterComponent implements OnInit {
   get sexo() {
     return this.registerForm.get('sexo')!;
   }
+
+  
 }

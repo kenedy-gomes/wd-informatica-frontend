@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthModel } from '../model/registerModel/AuthModel';
-import { Register } from '../model/registerModel/register';
-import { Login} from '../model/registerModel/login';
+import { AuthModel } from '../model/AuthModel';
+import { Register } from '../model/register';
+import { Login} from '../model/login';
 import { Router } from '@angular/router';
 import {ToastrService} from "ngx-toastr";
 import { SharedService } from './shared.service';
@@ -17,7 +17,7 @@ export class AuthService {
   private AuthUrlLogin = `${environment.apiLogin}`
 
 
-  constructor(private http: HttpClient, private cookieService: CookieService, private router: Router, private toastr: ToastrService, private sharedService: SharedService) {}
+  constructor(private http: HttpClient, private cookieService: CookieService, private router: Router, private toastr: ToastrService) {}
 
   setHeadersForBearer() {
     return new HttpHeaders({

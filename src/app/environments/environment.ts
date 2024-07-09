@@ -5,5 +5,6 @@ export const environment = {
     apiLogin: 'http://localhost:8080/api/auth/login',
     apiPlanos: 'http://localhost:8080/api/planos',
     apiProfile: 'http://localhost:8080/user/profile',
+    apiUpdate: 'http://localhost:8080/user/update/'
   };
   

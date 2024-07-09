@@ -26,33 +26,64 @@
               <div class="flex-auto">
                 <label for="text" class="font-bold block mb-2">
                   Nome Completo
-          
                 </label>
-                <input [(ngModel)]="userProfile.name" pInputText class="w-full" />
+                <input
+                  pInputText
+                  class="w-full"
+                  id="name"
+                  name="name"
+                  [(ngModel)]="userProfile.name"
+                 />
               </div>
               <div class="flex-auto">
                 <label for="text" class="font-bold block mb-2"> Email </label>
-                <input [(ngModel)]="userProfile.email" pInputText class="w-full" />
+                <input
+                  pInputText
+                  class="w-full"
+                  id="email"
+                  name="email"
+      
+                  [(ngModel)]="userProfile.email"
+                 />
               </div>
             </div>
             <div class="flex flex-wrap gap-3">
               <div class="flex-auto">
                 <label for="number" class="font-bold block mb-2"> CPF </label>
-                <input [(ngModel)]="userProfile.cpf" pInputText id="number" class="w-full" />
+                <input
+                  pInputText
+                  id="cpf"
+                  class="w-full"
+                  name="cpf"
+                  [(ngModel)]="userProfile.cpf"
+                 />
               </div>
               <div class="flex-auto">
-                <label for="alphabetic" class="font-bold block mb-2">
-                  Data Nascimento</label
-                >
-                <input [(ngModel)]="userProfile.data_nascimento" pInputText class="w-full" />
+                <label for="text" class="font-bold block mb-2"> Data de nascimento </label>
+                <p-calendar
+                  [showIcon]="true"
+                  dateFormat="dd/mm/yy"
+                  placeholder="Data de Nascimento"
+                  id="data_nascimento"
+                  name="data_nascimento"
+                  [style]="{ width: '100%' }"
+                  [(ngModel)]="userProfile.data_nascimento"
+                 ></p-calendar>
               </div>
+
               <div class="flex-auto">
                 <label for="text" class="font-bold block mb-2"> Sexo </label>
-                <input [(ngModel)]="userProfile.sexo" pInputText class="w-full" />
+                <input
+                  pInputText
+                  class="w-full"
+                  id="sexo"
+                  name="sexo"
+                  [(ngModel)]="userProfile.sexo"
+                />
               </div>
             </div>
           </div>
-          <p-button [style]="{marginTop: '20px'}" label="Editar" />
+          <p-button (click)="update()"  [style]="{ marginTop: '20px' }" label="Editar" />
         </div>
       </div>
     </div>

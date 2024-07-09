@@ -51,10 +51,11 @@
               placeholder="CPF"
             ></p-inputMask>
           </div>
-          
+
           <div class="flex flex-column">
             <p-calendar
-              [showIcon]="true" 
+              [showIcon]="true"
+              dateFormat="dd/mm/yy"
               placeholder="Data de Nascimento"
               id="data_nascimento"
               name="data_nascimento"
@@ -62,7 +63,10 @@
               formControlName="data_nascimento"
             ></p-calendar>
             <div
-              *ngIf="data_nascimento.invalid && (data_nascimento.dirty || data_nascimento.touched)"
+              *ngIf="
+                data_nascimento.invalid &&
+                (data_nascimento.dirty || data_nascimento.touched)
+              "
               class="error"
             >
               <div *ngIf="data_nascimento.errors?.['required']">

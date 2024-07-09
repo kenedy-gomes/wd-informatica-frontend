@@ -8,7 +8,7 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
 import { AuthService } from '../service/auth.service';
-import {Login} from '../model/registerModel/login';
+import {Login} from '../model/login';
 import { InputMaskModule } from 'primeng/inputmask';
 
 
