@@ -1,6 +1,23 @@
-<div *ngIf="plan">
-    <h2>{{ plan.megas }}</h2>
-    <p>{{ plan.description }}</p>
-    <p>{{ plan.plano }}</p>
-    <p>{{ plan.servicos }}</p>
+<app-header></app-header>
+<body>
+  <div class="container">
+    <div *ngIf="plan" class="plan-details">
+      <div class="plan-header">
+        <h2>{{ plan.megas }} Mbps</h2>
+      </div>
+      <div class="plan-body">
+        <p class="plan-description">{{ plan.description }}</p>
+        <p class="plan-type"><strong>Valor:</strong> {{ plan.plano }}</p>
+        <p class="plan-services"><strong>Megas:</strong> {{ plan.megas }}</p>
+        <p class="plan-services"><strong>Serviços:</strong> {{ plan.servicos }}</p>
+      </div>
+      <div class="plan-footer">
+        <p class="plan-price">A partir de <strong>R$ {{ plan.plano }}</strong></p>
+        <p class="plan-offer">Aproveite agora e ganhe 1 mês grátis!</p>
+        <p class="plan-cta">Não perca essa oportunidade de ter a melhor internet em casa!</p>
+        <button class="btn-primary">Assinar Plano</button>
+      </div>
+    </div>
   </div>
+</body>
+<app-footer></app-footer>

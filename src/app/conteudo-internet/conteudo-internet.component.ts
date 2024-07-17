@@ -3,6 +3,7 @@ import { ButtonModule } from 'primeng/button';
 import { ConteudoService } from '../service/conteudo.service';
 import {CommonModule} from '@angular/common';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-conteudo-internet',
@@ -13,8 +14,11 @@ import { Router } from '@angular/router';
 })
 export class ConteudoInternetComponent implements OnInit {
   data: any[] = [];
+  roles?: string;
 
-  constructor(private conteudoService: ConteudoService, private router: Router) { }
+  constructor(private conteudoService: ConteudoService, private router: Router, private cookieService: CookieService) { 
+    this.roles = this.cookieService.get('role');
+  }
 
   ngOnInit(): void {
       this.getPlanos();

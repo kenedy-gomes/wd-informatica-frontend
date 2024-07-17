@@ -1,7 +1,11 @@
 <div  class="grid-container gap-5">
      <div *ngFor="let plano of data" class="grid-item">
         <div>
-            <h1>{{plano.megas}}</h1>
+            <div style="display: flex; gap: 10px; justify-content: right;" *ngIf="roles === 'ADMIN'">
+                <i style="color: rgb(62, 62, 230);" class="pi pi-file-edit"></i>    
+                <i style="color: red;" class="pi pi-trash"></i>
+           </div>
+            <h1 style="margin-top: 0px;">{{plano.megas}}</h1>
             <p>{{plano.description}}</p>
         </div>
             

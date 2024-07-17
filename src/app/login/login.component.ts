@@ -29,7 +29,7 @@ export class LoginComponent  {
   ngOnInit() {
     this.authService.deleteCookies();
       this.loginForm = new FormGroup({
-          'cpf': new FormControl('', [Validators.required]),
+          'cpf': new FormControl('', [Validators.required, Validators.minLength(11), Validators.pattern('^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$')]),
           'password': new FormControl('', [Validators.required])
       });
   }

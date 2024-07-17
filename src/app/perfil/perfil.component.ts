@@ -14,7 +14,6 @@ import { CommonModule } from '@angular/common';
 import { CalendarModule } from 'primeng/calendar'; 
 import {Update} from '../model/UpdateModel'
 import { DropdownModule } from 'primeng/dropdown';
-import { NgModule, LOCALE_ID } from '@angular/core';
 
 
 @Component({
