@@ -81,7 +81,7 @@ export class AuthService {
     this.cookieService.delete('authToken');
     this.cookieService.delete('name');
     this.cookieService.delete('role');
-    this.router.navigateByUrl('/');
+    window.document.location.reload();
   }
 
   private isTokenValid(token: string): boolean {

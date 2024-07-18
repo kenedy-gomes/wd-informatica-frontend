@@ -1,19 +1,54 @@
-<div  class="grid-container gap-5">
-     <div *ngFor="let plano of data" class="grid-item">
-        <div>
-            <div style="display: flex; gap: 10px; justify-content: right;" *ngIf="roles === 'ADMIN'">
-                <i style="color: rgb(62, 62, 230);" class="pi pi-file-edit"></i>    
-                <i style="color: red;" class="pi pi-trash"></i>
-           </div>
-            <h1 style="margin-top: 0px;">{{plano.megas}}</h1>
-            <p>{{plano.description}}</p>
+<div class="grid-container gap-5">
+    <div *ngFor="let plano of data" class="grid-item">
+        <div style="display: flex; justify-content: space-between; gap: 5px;">
+            <div>
+                <h1 style="margin-top: 0px;">{{plano.megas}}</h1>
+            </div>
+            <div>
+                <div style="display: flex; gap: 10px; justify-content: right;" *ngIf="roles === 'ADMIN'">
+                    <p-confirmPopup />
+                    <p-button [style]="{ width: '2rem', height: '2rem' }" (onClick)="showDialog()"
+                        icon="pi pi-file-edit" />
+                    <p-button [style]="{ width: '2rem', height: '2rem' }" (click)="confirm2($event)" icon="pi pi-trash"
+                        severity="danger" />
+                </div>
+
+                <!--MODAL EDITAR PLANOS-->
+                <div *ngIf="plano" class="form">
+                    <p-dialog header="Editar planos" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem', height: 'auto'  }">
+                        <span class="p-text-secondary block mb-5">Edite as informações.</span>
+                        <div class="flex align-items-center gap-3 mb-3">
+                            <label for="Megas" class="font-semibold w-6rem">Megas</label>
+                             <input [(ngModel)]="plano.megas" id="megas"
+                            name="megas" pInputText class="flex-auto" autocomplete="off" />
+                        </div>
+                        <div class="flex align-items-center gap-3 mb-5">
+                            <label for="email" class="font-semibold w-6rem">plano</label>
+                            <input [(ngModel)]="plano.plano"  id="plano" name="plano" pInputText class="flex-auto" autocomplete="off" />
+                        </div>
+                        <div class="flex align-items-center gap-3 mb-5">
+                            <label for="email" class="font-semibold w-6rem">servicos</label>
+                            <textarea  [(ngModel)]="plano.servicos"  id="servicos" name="servicos" pInputText class="flex-auto" autocomplete="off"> </textarea>
+                        </div>
+                        <div class="flex align-items-center gap-3 mb-5">
+                            <label for="email" class="font-semibold w-6rem">Descrição</label>
+                            <textarea [(ngModel)]="plano.description" name="description" id="description"  pInputText class="flex-auto" autocomplete="off"></textarea>
+                        </div>
+                        <div class="flex justify-content-end gap-2">
+                            <p-button label="Cancelar" severity="secondary" (onClick)="visible = false" />
+                            <p-button label="Editar" (onClick)="visible = false" />
+                        </div>
+                    </p-dialog>
+                </div>
+                <!--MODAL EDITAR PLANOS-->
+            </div>
         </div>
-            
+        <p>{{plano.description}}</p>
         <div>
             <p>{{plano.plano}}</p>
-             <a style="cursor: pointer;" (click)="viewPlanDetails(plano.id)" class="btn">Ver plano</a>
+            <a style="cursor: pointer;" (click)="viewPlanDetails(plano.id)" class="btn">Ver plano</a>
         </div>
-            
+
         <div>
             <p>{{plano.servicos}}</p>
             <div class="flex gap-2 align-items-center">
@@ -23,16 +58,15 @@
                 <img style="width: 20px;" src="/assets/icons8-roteador-24.png" alt="img">
             </div>
         </div>
-     </div>
+    </div>
 </div>
 <div class="oferta">
     <p>
-        *Oferta de 300Mega por R$ 120,00/Mês válida na região noroeste. para conferir se sua residencia está participante, <a href="/contato">clique aqui.</a>
+        *Oferta de 300Mega por R$ 120,00/Mês válida na região noroeste. para conferir se sua residencia está
+        participante, <a href="/contato">clique aqui.</a>
     </p>
-    
+
     <p>
         Melhor Opção de Internet Fibra Óptica.
     </p>
 </div>
-
-

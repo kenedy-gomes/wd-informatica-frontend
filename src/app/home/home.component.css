@@ -1,4 +1,7 @@
- 
+ body{
+  height: 100vw;
+ }
+
 .home-container {
     text-align: center;
     margin-top: 50px;
@@ -29,6 +32,9 @@
     .container{
       height: 100%;
    }
+   body{
+    height: 100%;
+   }
   }
 
   @media screen and (max-width: 768px) {  
@@ -43,5 +49,10 @@
     color: #5e4734;
     font-style: normal;
    }
+
+   body{
+    height: 100%;
+   }
+
   }
   
