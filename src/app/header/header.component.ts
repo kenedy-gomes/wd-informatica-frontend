@@ -11,8 +11,8 @@ import { SharedService } from '../service/shared.service';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { CookieService } from 'ngx-cookie-service';
-
- 
+import { Update } from '../model/UpdateModel';
+import { PerfilService } from '../service/perfil.service';
 
 @Component({
   selector: 'app-header',
@@ -24,69 +24,70 @@ import { CookieService } from 'ngx-cookie-service';
 export class HeaderComponent implements OnInit {
   roles?: string;
   userData?: string;
+  token?: string;
+  userProfile?: Update;  
   items: MenuItem[] | undefined;
 
   menuActive: boolean = false;
   sidebarVisible: boolean = false;
 
-  ngOnInit() {
-    this.setMenuItems();
-  }
-
-  private setMenuItems() {
-    if (this.roles === 'USER') {
-      this.items = [
-        {
-          items: [
-            {
-              label: 'Perfil',
-              command: () => this.goToProfile(),
-              icon: 'pi pi-cog'
-            },
-
-            {
-              label: 'Meu plano',
-              command: () => this. goToPlanos(),
-              icon: 'pi pi-th-large'
-            },
-
-            {
-              label: 'Sair',
-              command: () => this.logout(),
-              icon: 'pi pi-sign-out'
-            }
-          ]
-        }
-      ];
-    } else if (this.roles === 'ADMIN') {
-      this.items = [
-        {
-          items: [
-            {
-              label: 'Perfil',
-              command: () => this.goToProfile(),
-              icon: 'pi pi-cog'
-            },
-            {
-              label: 'Painel',
-              command: () => this.goToPanel(),
-              icon: 'pi pi-th-large'
-            },
-            {
-              label: 'Sair',
-              command: () => this.logout(),
-              icon: 'pi pi-sign-out'
-            }
-          ]
-        }
-      ];
-    }
-  }
-
-  constructor(private authService: AuthService, private sharedService: SharedService, private cookieService: CookieService, private router: Router) {
+  constructor(private authService: AuthService, private sharedService: SharedService, private cookieService: CookieService, private router: Router, private perfilService: PerfilService) {
     this.userData = this.cookieService.get('name');
     this.userData = this.extractFirstAndSecondName(this.userData);
     this.roles = this.cookieService.get('role');
+    this.token = this.cookieService.get('authToken');
+  }
+
+  ngOnInit() {
+   this.setMenuItems();
+  }
+
+  private setMenuItems() {
+      if (this.roles === 'USER') {
+        this.items = [
+          {
+            items: [
+              {
+                label: 'Perfil',
+                command: () => this.goToProfile(),
+                icon: 'pi pi-cog'
+              },
+              {
+                label: 'Meu plano',
+                command: () => this.goToPlanos(),
+                icon: 'pi pi-th-large'
+              },
+              {
+                label: 'Sair',
+                command: () => this.logout(),
+                icon: 'pi pi-sign-out'
+              }
+            ]
+          }
+        ];
+      } else if (this.roles === 'ADMIN') {
+        this.items = [
+          {
+            items: [
+              {
+                label: 'Perfil',
+                command: () => this.goToProfile(),
+                icon: 'pi pi-cog'
+              },
+              {
+                label: 'Painel',
+                command: () => this.goToPanel(),
+                icon: 'pi pi-th-large'
+              },
+              {
+                label: 'Sair',
+                command: () => this.logout(),
+                icon: 'pi pi-sign-out'
+              }
+            ]
+          }
+        ];
+      }
     
   }
 
@@ -118,4 +119,3 @@ export class HeaderComponent implements OnInit {
     this.menuActive = !this.menuActive;
   }
 }
-

@@ -5,18 +5,17 @@
                 <h1 style="margin-top: 0px;">{{plano.megas}}</h1>
             </div>
             <div>
-                <div style="display: flex; gap: 10px; justify-content: right;" *ngIf="roles === 'ADMIN'">
+                <div style="display: flex; gap: 10px; justify-content: right;" *ngIf="roles == 'ADMIN'">
                     <p-confirmPopup />
-                    <p-button [style]="{ width: '2rem', height: '2rem' }" (onClick)="showDialog()"
+                    <p-button [style]="{ width: '2rem', height: '2rem' }" (onClick)="showDialog(plano)"
                         icon="pi pi-file-edit" />
-                    <p-button [style]="{ width: '2rem', height: '2rem' }" (click)="confirm2($event)" icon="pi pi-trash"
+                    <p-button [style]="{ width: '2rem', height: '2rem' }" (click)="confirm2($event, plano.id)" icon="pi pi-trash"
                         severity="danger" />
                 </div>
 
                 <!--MODAL EDITAR PLANOS-->
-                <div *ngIf="plano" class="form">
-                    <p-dialog header="Editar planos" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem', height: 'auto'  }">
-                        <span class="p-text-secondary block mb-5">Edite as informações.</span>
+                    <p-dialog  header="Atualizar planos" [modal]="true"  [(visible)]="visible[plano.id]" [style]="{ width: '30rem', height: 'auto'  }">
+                        <span class="p-text-secondary block mb-5">Atualize as informações.</span>
                         <div class="flex align-items-center gap-3 mb-3">
                             <label for="Megas" class="font-semibold w-6rem">Megas</label>
                              <input [(ngModel)]="plano.megas" id="megas"
@@ -35,11 +34,10 @@
                             <textarea [(ngModel)]="plano.description" name="description" id="description"  pInputText class="flex-auto" autocomplete="off"></textarea>
                         </div>
                         <div class="flex justify-content-end gap-2">
-                            <p-button label="Cancelar" severity="secondary" (onClick)="visible = false" />
-                            <p-button label="Editar" (onClick)="visible = false" />
+                            <p-button label="Cancelar" severity="secondary"(onClick)="visible[plano.id] = false" />
+                            <p-button label="Editar" (click)="update(plano)"  (onClick)="visible[plano.id] = false" />
                         </div>
                     </p-dialog>
-                </div>
                 <!--MODAL EDITAR PLANOS-->
             </div>
         </div>

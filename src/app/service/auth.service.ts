@@ -7,7 +7,6 @@ import { Register } from '../model/register';
 import { Login} from '../model/login';
 import { Router } from '@angular/router';
 import {ToastrService} from "ngx-toastr";
-import { SharedService } from './shared.service';
 ;
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,6 @@ import { SharedService } from './shared.service';
 export class AuthService {
   private authUrlRegister = `${environment.apiRegister}`;
   private AuthUrlLogin = `${environment.apiLogin}`
-
 
   constructor(private http: HttpClient, private cookieService: CookieService, private router: Router, private toastr: ToastrService) {}
 
@@ -26,6 +24,7 @@ export class AuthService {
     });
 }
 
+ 
  async login(loginModel: Login) {
     this.deleteCookies();
     const headers = this.setHeadersForBearer(); 
@@ -80,8 +79,7 @@ export class AuthService {
   logout(): void {
     this.cookieService.delete('authToken');
     this.cookieService.delete('name');
-    this.cookieService.delete('role');
-    window.document.location.reload();
+    window.document.location.href = '/login';
   }
 
   private isTokenValid(token: string): boolean {
@@ -114,7 +112,6 @@ export class AuthService {
   deleteCookies(): void {
     this.cookieService.delete('authToken');
     this.cookieService.delete('name');
-    this.cookieService.delete('role');
   }
 
 

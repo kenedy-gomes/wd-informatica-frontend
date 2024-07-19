@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 export class PlanoServiceService {
 
   private baseUrl = environment.apiPlanos;
-  private baseUrlPlanos = environment.apiUpdatePlanos;
 
   constructor(private http: HttpClient, private cookieService: CookieService, private toastr: ToastrService) { }
 
@@ -35,7 +34,7 @@ export class PlanoServiceService {
 
  async updatePlano(plano: UpdatePlanos){
     const headers = this.setHeadersForBearer();
-    return this.http.put<UpdatePlanos>(this.baseUrlPlanos, plano, { headers }).subscribe(
+    return this.http.put<UpdatePlanos>(this.baseUrl, plano, { headers }).subscribe(
      async (response) => {
         console.log(response);
         await this.toastr.success('Plano atualizado!');

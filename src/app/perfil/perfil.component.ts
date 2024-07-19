@@ -40,7 +40,7 @@ import { DropdownModule } from 'primeng/dropdown';
 export class PerfilComponent implements OnInit {
   roles?: string;
   userData?: string;
-  userProfile!: Update;
+  userProfile?: Update;
   loading: boolean = false;
  
   sexOptions = [
@@ -53,19 +53,17 @@ export class PerfilComponent implements OnInit {
     private perfilService: PerfilService, 
   ) {
   
-    this.roles = this.cookieService.get('role');
-    if (this.roles === 'USER' || this.roles === 'ADMIN') {
+    if (this.userProfile?.role === 'USER' || this.userProfile?.role === 'ADMIN') {
       this.userData = this.cookieService.get('name').toUpperCase();
     }
   }
-
 
   ngOnInit(): void {
     this.loadUserProfile();
   }
 
   updateUserProfile() {
-    this.perfilService.updateUserProfile(this.userProfile);
+    this.perfilService.updateUserProfile(this.userProfile!);
   }
 
   update() {
@@ -80,7 +78,7 @@ export class PerfilComponent implements OnInit {
     this.perfilService.getUserProfile().subscribe(
       (response: Update) => {
         this.userProfile = response;
-        console.log('User Profile', this.userProfile);
+        console.log(this.userProfile);
         if (this.userProfile && this.userProfile.data_nascimento) {
           this.userProfile.data_nascimento = this.formatarData(
             this.userProfile.data_nascimento
