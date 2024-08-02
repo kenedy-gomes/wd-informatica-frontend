@@ -1,1 +1,20 @@
-<p>painel works!</p>
+<app-header></app-header>
+<div class="container-itens">
+  <div class="sidebar">
+    <ul>
+      <li class="active">
+        <a routerLink="admin/listagem"  routerLinkActive="active"> <i class="pi pi-list"></i> Listagem Planos </a>
+      </li>
+      <li>
+        <a routerLink="admin/solicitacao" routerLinkActive="active"><i class="pi pi-bell"></i> Solicitação de Plano </a>
+      </li>
+      <li>
+        <a routerLink="admin/mensagens" routerLinkActive="active"><i class="pi pi-envelope"></i> Mensagens </a>
+      </li>
+    </ul>
+  </div>
+  <div class="conteudo">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -20,7 +20,7 @@ export class PlanoServiceService {
         'Authorization': 'Bearer ' + this.cookieService.get('authToken'),
         'Content-Type': 'application/json'
     });
-}
+ }
 
   getPlans() {
     const headers = this.setHeadersForBearer();
@@ -38,7 +38,16 @@ export class PlanoServiceService {
      async (response) => {
         console.log(response);
         await this.toastr.success('Plano atualizado!');
+      }, 
+      (error) => {
+        console.error('Error', error.error);
+         this.toastr.error('Plano não atualizado!');
       }
     )
-  } 
+  }
+  
+  registerPlano(plano: UpdatePlanos): Observable<any> {
+    const headers = this.setHeadersForBearer();
+    return this.http.post(this.baseUrl, plano, { headers, responseType: 'text' });
+  }
 }

@@ -1,0 +1,63 @@
+.container-itens{
+    display: flex;
+    height: 100vh;
+}
+
+.conteudo{
+    width: 80%;
+    padding: 10px;
+}
+
+.sidebar{
+    width: 20%;
+    background-color: navy;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+}
+
+.sidebar ul {
+    padding: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar ul li {
+    list-style: none;
+    text-align: left;
+    padding: 10px;
+}
+
+ 
+
+.sidebar ul li a {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+
+.sidebar ul li a:hover{
+    color: white;
+    background-color: #4848ee;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+ 
+.sidebar ul li a:active{
+    color: rgb(153, 28, 28);
+    background-color: #4848ee;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+ 
+.active a:nth-child(1) {
+    background-color: #4848ee;
+    border-radius: 5px;
+}

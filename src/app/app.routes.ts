@@ -11,6 +11,8 @@ import { PainelComponent } from './painel/painel.component';
 import { ListagemAdminComponent } from './admin/listagem-admin/listagem-admin.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import {PlanDetailComponent} from './plan-detail/plan-detail.component';
+import {SolicitacaoPlanoComponent} from './solicitacao-plano/solicitacao-plano.component';
+import {MensagensComponent} from './mensagens/mensagens.component';
 
 import {AuthGuard} from "./auth-guard";
 
@@ -23,8 +25,15 @@ export const routes: Routes = [
     { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
     { path: 'planos', component: PlanosComponent, canActivate: [AuthGuard] },
     { path: 'plan/:id', component: PlanDetailComponent, canActivate: [AuthGuard] },
-    { path: 'admin/painel', component: PainelComponent, canActivate: [AuthGuard] },
-    { path: 'admin/listagem', component: ListagemAdminComponent, canActivate: [AuthGuard] }
+    { path: 'admin/painel', component: PainelComponent, canActivate: [AuthGuard],
+        children: [
+            { path: '', redirectTo: 'admin/listagem', pathMatch: 'full' },
+            { path: 'admin/listagem', component: ListagemAdminComponent, canActivate: [AuthGuard]},
+            { path: 'admin/solicitacao', component: SolicitacaoPlanoComponent, canActivate: [AuthGuard]},
+            { path: 'admin/mensagens', component: MensagensComponent, canActivate: [AuthGuard]}
+    ]
+}
+      
 ];
 
 @NgModule({

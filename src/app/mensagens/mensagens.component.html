@@ -1,0 +1,22 @@
+<div class="card">
+    <p-table [value]="mensagens" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Assunto</th>
+                <th>Mensagem</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-mensagens>
+            <tr>
+                <td>{{ mensagens.nome }}</td>
+                <td>{{ mensagens.email }}</td>
+                <td>{{ mensagens.telefone }}</td>
+                <td>{{ mensagens.assunto }}</td>
+                <td>{{ mensagens.mensagem }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

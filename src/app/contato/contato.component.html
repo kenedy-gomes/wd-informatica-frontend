@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="container-form">
-      <form (ngSubmit)="onSubmit()" #faleConoscoForm="ngForm">
+      <form [formGroup]="mensagemForm" (ngSubmit)="submit()">
         <div class="title-message">
           <p>Envie sua mensagem.</p>
         </div>
@@ -33,7 +33,8 @@
               id="nome"
               name="nome"
               aria-describedby="nome-help"
-              [(ngModel)]="nome"
+              formControlName="nome"
+              autocomplete="off"
             />
           </div>
 
@@ -44,7 +45,20 @@
               id="email"
               name="email"
               aria-describedby="email-help"
-              [(ngModel)]="email"
+              formControlName="email"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="flex flex-column gap-1">
+            <input
+              pInputText
+              placeholder="Telefone"
+              id="telefone"
+              name="telefone"
+              aria-describedby="telefone-help"
+              formControlName="telefone"
+              autocomplete="off"
             />
           </div>
 
@@ -55,7 +69,8 @@
               placeholder="Assunto"
               name="assunto"
               aria-describedby="assunto-help"
-              [(ngModel)]="assunto"
+              formControlName="assunto"
+              autocomplete="off"
             />
           </div>
 
@@ -68,11 +83,14 @@
               cols="30" 
               pInputTextarea 
               name="mensagem" 
-              [(ngModel)]="mensagem">
+              id="mensagem"
+              formControlName="mensagem"
+              autocomplete="off"
+              >
             </textarea>
           </div>
 
-          <button type="submit" [disabled]="faleConoscoForm.invalid">
+          <button type="submit" [disabled]="mensagemForm.invalid">
             Enviar
           </button>
         </div>

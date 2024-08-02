@@ -1,1 +1,181 @@
-<p>listagem-admin works!</p>
+<div class="card">
+  <p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Megas</th>
+        <th>Plano</th>
+        <th>Serviços</th>
+        <th>Descrição</th>
+        <th style="display: flex; justify-content: right">
+          <i label="Show" (click)="showDialogCreate()" class="pi pi-plus" style="
+          font-size: 1.2rem;
+          color: #ffffff;
+          background-color: #3b82f6;
+          padding: 5px;
+          border-radius: 6px;
+          cursor: pointer;
+        "></i>
+        </th> 
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData>
+      <tr>
+        <td>{{ getFormattedMegas(rowData.megas) }}</td>
+        <td>{{ getFormattedPlano(rowData.plano) }}</td>
+        <td>{{ rowData.servicos }}</td>
+        <td>{{ rowData.description }}</td>
+   
+        <td>
+          <div style="display: flex; gap: 10px; justify-content: right">
+            <p-confirmPopup></p-confirmPopup>
+            <p-button [style]="{ width: '2rem', height: '2rem' }" (onClick)="showDialog(rowData)"
+              icon="pi pi-file-edit"></p-button>
+            <p-button [style]="{ width: '2rem', height: '2rem' }" (click)="confirm2($event, rowData.id)"
+              icon="pi pi-trash" severity="danger"></p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<div *ngFor="let plano of data">
+  <!-- MODAL EDITAR PLANOS -->
+  <p-dialog
+    header="Atualizar planos"
+    [modal]="true"
+    [(visible)]="visible[plano.id]"
+    [style]="{ width: '40rem', height: 'auto' }"
+  >
+    <span class="p-text-secondary block mb-5">Atualize as informações.</span>
+    <div class="flex align-items-center gap-3 mb-3">
+      <label for="Megas" class="font-semibold w-6rem">Megas</label>
+      <input
+        [(ngModel)]="plano.megas"
+        id="megas"
+        name="megas"
+        pInputText
+        class="flex-auto"
+        autocomplete="off"
+      />
+    </div>
+    <div class="flex align-items-center gap-3 mb-5">
+      <label for="plano" class="font-semibold w-6rem">Plano</label>
+      <input
+        [(ngModel)]="plano.plano"
+        id="plano"
+        name="plano"
+        pInputText
+        class="flex-auto"
+        autocomplete="off"
+      />
+    </div>
+    <div class="flex align-items-center gap-3 mb-5">
+      <label for="servicos" class="font-semibold w-6rem">Serviços</label>
+      <textarea
+        [(ngModel)]="plano.servicos"
+        id="servicos"
+        name="servicos"
+        pInputTextarea
+        class="flex-auto"
+        autocomplete="off"
+      ></textarea>
+    </div>
+    <div class="flex align-items-center gap-3 mb-5">
+      <label for="description" class="font-semibold w-6rem">Descrição</label>
+      <textarea
+        [(ngModel)]="plano.description"
+        name="description"
+        id="description"
+        pInputTextarea
+        class="flex-auto"
+        autocomplete="off"
+      ></textarea>
+    </div>
+    <div class="flex justify-content-end gap-2">
+      <p-button
+        label="Cancelar"
+        severity="secondary"
+        (onClick)="visible[plano.id] = false"
+      ></p-button>
+      <p-button
+        label="Editar"
+        (click)="update(plano)"
+        (onClick)="visible[plano.id] = false"
+      ></p-button>
+    </div>
+  </p-dialog>
+  <!-- MODAL EDITAR PLANOS -->
+</div>
+
+<!-- MODAL CRIAR PLANOS -->
+<div class="card flex justify-content-center">
+  <p-dialog
+    header="Cadastro de planos"
+    [(visible)]="visibleCreate"
+    [style]="{ width: '50rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  >
+    <form [formGroup]="registerPlanosForm" (ngSubmit)="submit()">
+      <span class="p-text-secondary block mb-5">Cadastre um novo plano.</span>
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="Megas" class="font-semibold w-6rem">Megas</label>
+        <input
+          formControlName="megas"
+          id="megas"
+          name="megas"
+          placeholder="0 Megas"
+          pInputText
+          class="flex-auto"
+          autocomplete="off"
+        />
+      </div>
+      <div class="flex align-items-center gap-3 mb-5">
+        <label for="plano" class="font-semibold w-6rem">Plano</label>
+        <input
+          formControlName="plano"
+          id="plano"
+          name="plano"
+          placeholder="R$ 0,00"
+          pInputText
+          class="flex-auto"
+          autocomplete="off"
+        />
+      </div>
+      <div class="flex align-items-center gap-3 mb-5">
+        <label for="servicos" class="font-semibold w-6rem">Serviços</label>
+        <textarea
+          formControlName="servicos"
+          id="servicos"
+          name="servicos"
+          placeholder="Informe os serviços"
+          pInputTextarea
+          class="flex-auto"
+          autocomplete="off"
+        ></textarea>
+      </div>
+      <div class="flex align-items-center gap-3 mb-5">
+        <label for="description" class="font-semibold w-6rem">Descrição</label>
+        <textarea
+          formControlName="description"
+          id="description"
+          name="description"
+          placeholder="faça uma descrição sobre o plano"
+          pInputTextarea
+          class="flex-auto"
+          autocomplete="off"
+        ></textarea>
+      </div>
+      <div class="flex justify-content-end gap-2">
+        <p-button label="Cancelar" severity="secondary"></p-button>
+        <p-button
+          [disabled]="registerPlanosForm.invalid || loading"
+          type="submit"
+          label="Cadastrar"
+        ></p-button>
+      </div>
+    </form>
+  </p-dialog>
+</div>
+<!-- MODAL CRIAR PLANOS -->

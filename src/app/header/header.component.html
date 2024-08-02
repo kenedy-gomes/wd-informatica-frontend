@@ -16,7 +16,7 @@
     </div>
   </nav>
 
-  <nav *ngIf="!userData && token" class="nav-links">
+  <nav *ngIf="!userData && !token" class="nav-links">
     <a routerLink="/">Ofertas</a>
     <a target="_blank" href="https://www.minhaconexao.com.br">Velocidade</a>
     <a routerLink="/contato">Fale conosco</a>

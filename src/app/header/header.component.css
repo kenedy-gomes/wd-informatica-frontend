@@ -2,8 +2,7 @@
 .header {
   display: flex;
   justify-content: space-evenly;
-  padding: 10px 50px;  
-  border-bottom: 3px solid #e4e4e4;
+  padding: 25px 50px;  
   position: relative;
   background-color: navy;
 }

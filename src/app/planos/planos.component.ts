@@ -21,5 +21,4 @@ import { Router } from '@angular/router';
 export class PlanosComponent{
   sidebarVisible: boolean = false;
   constructor() { }
- 
 }
