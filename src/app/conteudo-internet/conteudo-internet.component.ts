@@ -56,6 +56,10 @@ ngOnInit(): void {
   }
  
   viewPlanDetails(id: string): void {
-    this.router.navigate(['/plan', id]);
+    if (id) {
+      this.router.navigate(['/plan', id]);
+    } else {
+      console.error('ID do plano está indefinido');
+    }
   }
 }

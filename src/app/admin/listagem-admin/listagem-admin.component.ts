@@ -13,6 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PlanoServiceService } from '../../service/plano-service.service';
+import { Mensagens } from '../../model/Mensagens';
 
 
 @Component({
@@ -26,6 +27,7 @@ import { PlanoServiceService } from '../../service/plano-service.service';
 export class ListagemAdminComponent implements OnInit {
   visible: { [key: string]: boolean } = {};
   data!: UpdatePlanos[];
+  mensagens!: Mensagens[];
   loading: boolean = false;
   visibleCreate: boolean = false;
   registerPlanosForm!: FormGroup;

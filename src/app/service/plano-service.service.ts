@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class PlanoServiceService {
 
   private baseUrl = environment.apiPlanos;
+  private baseUrlSolicitar = environment.apiSolicitacoes;
 
   constructor(private http: HttpClient, private cookieService: CookieService, private toastr: ToastrService) { }
 
@@ -49,5 +50,15 @@ export class PlanoServiceService {
   registerPlano(plano: UpdatePlanos): Observable<any> {
     const headers = this.setHeadersForBearer();
     return this.http.post(this.baseUrl, plano, { headers, responseType: 'text' });
+  }
+
+  requestPlan(request: any): Observable<any> {
+    const headers = this.setHeadersForBearer();
+    return this.http.post(`${this.baseUrlSolicitar}/request-plan`, request, { headers});
+  }
+
+  getRequestPlans(): Observable<any> {
+    const headers = this.setHeadersForBearer();
+    return this.http.get(`${this.baseUrlSolicitar}/plan-requests`, { headers});
   }
 }

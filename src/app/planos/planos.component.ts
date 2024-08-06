@@ -7,8 +7,6 @@ import { ButtonModule } from 'primeng/button';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { InputTextModule } from 'primeng/inputtext';
 import { SidebarModule } from 'primeng/sidebar';
-import { PlanoServiceService } from '../service/plano-service.service';
-import { Router } from '@angular/router';
 
 
 @Component({

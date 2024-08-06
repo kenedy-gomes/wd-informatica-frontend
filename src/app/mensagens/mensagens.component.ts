@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './mensagens.component.css',
 })
 export class MensagensComponent implements OnInit {
-
   mensagens!: Mensagens[];
 
   constructor( private mensagensService: MensagensService) { }

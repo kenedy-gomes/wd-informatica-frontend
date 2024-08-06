@@ -98,6 +98,7 @@ export class AuthService {
     this.cookieService.set('authToken', auth.token);
     this.cookieService.set('name', auth.name);
     this.cookieService.set('role', auth.role);
+    this.cookieService.set('id', auth.id);
     return auth;
   }
 
@@ -112,7 +113,7 @@ export class AuthService {
   deleteCookies(): void {
     this.cookieService.delete('authToken');
     this.cookieService.delete('name');
+    this.cookieService.delete('role');
+    this.cookieService.delete('id');
   }
-
-
 }

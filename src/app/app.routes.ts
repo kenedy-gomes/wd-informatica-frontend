@@ -13,6 +13,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import {PlanDetailComponent} from './plan-detail/plan-detail.component';
 import {SolicitacaoPlanoComponent} from './solicitacao-plano/solicitacao-plano.component';
 import {MensagensComponent} from './mensagens/mensagens.component';
+import {AgradecimentoSolicitacaoComponent} from './agradecimento-solicitacao/agradecimento-solicitacao.component';
 
 import {AuthGuard} from "./auth-guard";
 
@@ -25,6 +26,7 @@ export const routes: Routes = [
     { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
     { path: 'planos', component: PlanosComponent, canActivate: [AuthGuard] },
     { path: 'plan/:id', component: PlanDetailComponent, canActivate: [AuthGuard] },
+    { path: 'solicitacao-planos', component: AgradecimentoSolicitacaoComponent, canActivate: [AuthGuard]},
     { path: 'admin/painel', component: PainelComponent, canActivate: [AuthGuard],
         children: [
             { path: '', redirectTo: 'admin/listagem', pathMatch: 'full' },
