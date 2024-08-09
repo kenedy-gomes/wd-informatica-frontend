@@ -29,7 +29,7 @@
           />
           </div>
           <p>Não possui uma conta? <a href="/register">Clique aqui</a></p>
-          <p-button type="submit" [disabled]="loginForm.invalid || loading" class="btn" [style]="{padding: '10px', width: '50%', marginTop: '10px'}" label="Entrar" />
+          <p-button type="submit" [disabled]="loginForm.invalid || loading" class="btn" [loading]="loading"  [style]="{padding: '10px', width: '50%', marginTop: '10px'}" label="Entrar" />
         </div>
       </form>
     </div>

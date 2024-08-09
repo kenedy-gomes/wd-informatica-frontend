@@ -1,5 +1,10 @@
-<div class="card">
+<div style="height: 90%;" class="card">
   <p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="caption">
+      <div>
+          <h2>Listagem Planos</h2>
+      </div>
+  </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th>Megas</th>
@@ -18,7 +23,6 @@
         </th> 
       </tr>
     </ng-template>
-
     <ng-template pTemplate="body" let-rowData>
       <tr>
         <td>{{ getFormattedMegas(rowData.megas) }}</td>
@@ -38,6 +42,14 @@
       </tr>
     </ng-template>
   </p-table>
+</div>
+<div class="card flex justify-content-center">
+  <p-paginator 
+      (onPageChange)="onPageChange($event)" 
+      [first]="first" 
+      [rows]="rows" 
+      [totalRecords]="120" 
+      [rowsPerPageOptions]="[10, 20, 30]" />
 </div>
 
 <div *ngFor="let plano of data">

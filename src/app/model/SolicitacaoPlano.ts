@@ -1,6 +1,24 @@
+
+
 export interface SolicitacaoPlano {
     id: string;
-    planId: string;
-    userId: string;
-    approved: boolean;
-}
+    status: string;
+    solicitado: boolean;
+    plan: {
+      id: string;
+      description: string;
+      megas: string;
+      plano: string;
+      servicos: string;
+    };
+    user: {
+      id: string;
+      name: string;
+      email: string;
+      data_nascimento: string;
+      cpf: string;
+      sexo: string;
+    };
+  }
+
+  

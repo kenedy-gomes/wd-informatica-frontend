@@ -54,14 +54,14 @@ export class PainelComponent implements OnInit {
   }
 
   getListSolicitacaoCount() {
-    this.planoServiceService.getRequestPlans().subscribe(
-      (response: any[]) => {
-        this.listSolicitacaoCount = response.length;
+    this.planoServiceService.getRequestPlans(0, 1).subscribe(
+      (response: any) => {
+        this.listSolicitacaoCount = response.totalElements;
       },
       error => {
-        console.error('Erro ao buscar planos', error);
+        console.error('Erro ao buscar a contagem de solicitações', error);
       }
-    )
+    );
   }
 
 }

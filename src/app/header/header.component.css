@@ -1,10 +1,11 @@
  
 .header {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding: 25px 50px;  
   position: relative;
   background-color: navy;
+
 }
 
 .logo h1{

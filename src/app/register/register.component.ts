@@ -12,7 +12,6 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

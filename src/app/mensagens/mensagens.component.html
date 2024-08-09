@@ -1,8 +1,13 @@
 <div class="card">
     <p-table [value]="mensagens" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="caption">
+            <div>
+                <h2>Mensagens</h2>
+            </div>
+        </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th>Nome</th>
+                <th>Nome Completo</th>
                 <th>Email</th>
                 <th>Telefone</th>
                 <th>Assunto</th>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { CalendarModule } from 'primeng/calendar'; 
 import {Update} from '../model/UpdateModel'
 import { DropdownModule } from 'primeng/dropdown';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({

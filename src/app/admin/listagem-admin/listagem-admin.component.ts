@@ -14,17 +14,23 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PlanoServiceService } from '../../service/plano-service.service';
 import { Mensagens } from '../../model/Mensagens';
+import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 
 
 @Component({
   selector: 'app-listagem-admin',
   standalone: true,
-  imports: [CommonModule, TableModule, ConfirmPopupModule, FormsModule, DialogModule, ButtonModule, InputTextModule, InputTextareaModule, ReactiveFormsModule],
+  imports: [CommonModule, TableModule, ConfirmPopupModule, FormsModule, DialogModule, 
+    PaginatorModule, ButtonModule, InputTextModule, InputTextareaModule, ReactiveFormsModule],
   templateUrl: './listagem-admin.component.html',
   styleUrl: './listagem-admin.component.css',
   providers: [ConfirmationService, MessageService]
 })
+
 export class ListagemAdminComponent implements OnInit {
+  first: number = 0;
+  rows: number = 10;
+
   visible: { [key: string]: boolean } = {};
   data!: UpdatePlanos[];
   mensagens!: Mensagens[];
@@ -46,6 +52,11 @@ export class ListagemAdminComponent implements OnInit {
     );
   }
 
+  onPageChange(event: PaginatorState) {
+    this.first = event.first ?? 0;
+    this.rows = event.rows ?? 10;
+  }
+  
   showDialog(plano: UpdatePlanos) {
     this.visible[plano.id] = true;
   }

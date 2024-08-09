@@ -4,62 +4,62 @@
 }
 
 .conteudo{
-    width: 80%;
+    width: 100%;
     padding: 10px;
 }
 
 .sidebar{
-    width: 20%;
+    width: 18%;
     background-color: navy;
     display: flex;
     flex-direction: column;
     text-align: center;
     padding: 10px;
+    border-top: 1px solid #4b4b4b;
 }
 
 .sidebar ul {
     padding: 0px 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .sidebar ul li {
     list-style: none;
     text-align: left;
-    padding: 10px;
+    padding: 5px;
 }
 
- 
 
 .sidebar ul li a {
     color: white;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
     padding: 10px;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 
 .sidebar ul li a:hover{
-    color: white;
-    background-color: #4848ee;
+    color: rgb(40, 105, 226);
     border-radius: 5px;
     cursor: pointer;
     transition: 0.5s;
 }
  
 .sidebar ul li a:active{
-    color: rgb(153, 28, 28);
+    color: rgb(40, 105, 226);
     background-color: #4848ee;
     border-radius: 5px;
     cursor: pointer;
     transition: 0.5s;
 }
- 
-.active a:nth-child(1) {
-    background-color: #4848ee;
-    border-radius: 5px;
+
+.sidebar ul:nth-child(1) li:nth-child(1) a {
+    color: rgb(40, 105, 226);
 }
 
 .message-count {

@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
-import {ContatoModel} from '../model/contatoModel';
+import {ContatoModel} from '../model/ContatoModel';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({

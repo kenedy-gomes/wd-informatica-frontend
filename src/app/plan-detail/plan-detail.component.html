@@ -15,7 +15,14 @@
         <p class="plan-price">A partir de <strong>R$ {{ plan.plano }}</strong></p>
         <p class="plan-offer">Aproveite agora e ganhe 1 mês grátis!</p>
         <p class="plan-cta">Não perca essa oportunidade de ter a melhor internet em casa!</p>
-        <button class="btn-primary" (click)="assinarPlano()">Solicitar Plano</button>
+        <div>
+          <p-button 
+            [loading]="loading" 
+            label="Solicitar plano" 
+            (onClick)="assinarPlano()"  
+            [disabled]="loading">
+          </p-button>
+        </div>
       </div>
     </div>
   </div>

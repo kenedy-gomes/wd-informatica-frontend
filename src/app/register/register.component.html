@@ -117,16 +117,13 @@
           </div>
 
           <p>Já possui uma conta? <a href="/login">Clique aqui</a></p>
-          <button
+          <p-button 
             type="submit"
-            pButton
-            pRipple
-            class="btn"
-            style="padding: 10px; width: 50%; margin-top: 10px"
+            label="Cadastrar"
+            [loading]="loading" 
             [disabled]="registerForm.invalid || loading"
           >
-            Entrar
-          </button>
+          </p-button >
         </div>
       </form>
     </div>

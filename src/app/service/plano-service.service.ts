@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { UpdatePlanos } from '../model/UpdatePlanos';
 import { ToastrService } from 'ngx-toastr'; 
+import { SolicitacaoPlano } from '../model/SolicitacaoPlano';
+
+ 
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +16,9 @@ export class PlanoServiceService {
 
   private baseUrl = environment.apiPlanos;
   private baseUrlSolicitar = environment.apiSolicitacoes;
+  page: number = 0;
+  size: number = 10;
+
 
   constructor(private http: HttpClient, private cookieService: CookieService, private toastr: ToastrService) { }
 
@@ -33,6 +39,7 @@ export class PlanoServiceService {
     return this.http.get(`${this.baseUrl}/${id}`, { headers });
   }
 
+
  async updatePlano(plano: UpdatePlanos){
     const headers = this.setHeadersForBearer();
     return this.http.put<UpdatePlanos>(this.baseUrl, plano, { headers }).subscribe(
@@ -46,6 +53,11 @@ export class PlanoServiceService {
       }
     )
   }
+
+  getAllPlansForUser(userId: string): Observable<SolicitacaoPlano[]> {
+    const headers = this.setHeadersForBearer();
+    return this.http.get<SolicitacaoPlano[]>(`${this.baseUrl}/user-plan-requests/${userId}`, { headers, responseType: 'json' });
+  }
   
   registerPlano(plano: UpdatePlanos): Observable<any> {
     const headers = this.setHeadersForBearer();
@@ -57,8 +69,22 @@ export class PlanoServiceService {
     return this.http.post(`${this.baseUrlSolicitar}/request-plan`, request, { headers});
   }
 
-  getRequestPlans(): Observable<any> {
+  rejectedPlan(id: String): Observable<any> {
     const headers = this.setHeadersForBearer();
-    return this.http.get(`${this.baseUrlSolicitar}/plan-requests`, { headers});
+    return this.http.post(`${this.baseUrlSolicitar}/reject-plan-request/${id}`, {}, { headers});
+  }
+
+  approvedPlan(id: String): Observable<any> {
+    const headers = this.setHeadersForBearer();
+    return this.http.post(`${this.baseUrlSolicitar}/approve-plan-request/${id}`, {}, { headers});
+  }
+
+
+  getRequestPlans(page: number, size: number): Observable<any> {
+    const headers = this.setHeadersForBearer();
+    let params = new HttpParams();
+    params = params.append('page', page.toString());
+    params = params.append('size', size.toString());
+    return this.http.get(`${this.baseUrlSolicitar}/plan-requests?page=${page}&size=${size}`, { headers, params });
   }
 }
