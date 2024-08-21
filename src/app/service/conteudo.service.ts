@@ -1,17 +1,17 @@
 
 import {environment} from '../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UpdatePlanos } from '../model/UpdatePlanos';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Plan } from '../model/Plan';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConteudoService {
-  data!: UpdatePlanos[];
+  data!: Plan[];
 
 
   private BaseUrl = `${environment.apiPlanos}`
@@ -24,14 +24,14 @@ export class ConteudoService {
     });
 }
  
-  getConteudo(): Observable<UpdatePlanos[]> {
+  getConteudo(): Observable<Plan[]> {
     const headers = this.setHeadersForBearer();
-    return this.http.get<UpdatePlanos[]>(this.BaseUrl, { headers }); 
+    return this.http.get<Plan[]>(this.BaseUrl, { headers }); 
   }
 
-  updatePlano(plano: UpdatePlanos): Observable<UpdatePlanos>{
+  updatePlano(plano: Plan): Observable<Plan>{
     const headers = this.setHeadersForBearer();
-    return this.http.put<UpdatePlanos>(`${this.BaseUrl}/${plano.id}` , plano, { headers }); 
+    return this.http.put<Plan>(`${this.BaseUrl}/${plano.id}` , plano, { headers }); 
   }
 
   deletePlano(id: String): Observable<void>{ 

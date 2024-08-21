@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table [value]="mensagens" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="mensagens" [rowsPerPageOptions]="[5, 10, 15, 20]" [scrollable]="true" scrollHeight="720px"  [lazy]="true" (onLazyLoad)="onPageChange($event)"  [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="caption">
             <div>
                 <h2>Mensagens</h2>

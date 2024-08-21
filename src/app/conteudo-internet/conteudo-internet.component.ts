@@ -9,9 +9,9 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import {FormsModule} from '@angular/forms';
-import { UpdatePlanos } from '../model/UpdatePlanos'; 
 import { ToastrService } from 'ngx-toastr';
 import { PerfilService } from '../service/perfil.service';
+import { Plan } from '../model/Plan';
 
 @Component({
   selector: 'app-conteudo-internet',
@@ -23,12 +23,12 @@ import { PerfilService } from '../service/perfil.service';
 })
 export class ConteudoInternetComponent implements OnInit {
   visible: { [key: string]: boolean } = {};
-  data!: UpdatePlanos[];
+  data!: Plan[];
   roles?: string;
   loading: boolean = false;
   
 
-  showDialog(plano: UpdatePlanos) {
+  showDialog(plano: Plan) {
     this.visible[plano.id] = true;
   }
 
@@ -45,7 +45,7 @@ ngOnInit(): void {
 
   getPlanosConteudo() {
     this.conteudoService.getConteudo().subscribe(
-      (response: UpdatePlanos[]) => {
+      (response: Plan[]) => {
         this.data = response;
         console.log('Planos', response);
       },

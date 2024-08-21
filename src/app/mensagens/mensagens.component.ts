@@ -13,6 +13,9 @@ import { CommonModule } from '@angular/common';
 })
 export class MensagensComponent implements OnInit {
   mensagens!: Mensagens[];
+  totalRecords: number = 0;
+  page: number = 0;
+  size: number = 10;
 
   constructor( private mensagensService: MensagensService) { }
 
@@ -20,15 +23,21 @@ export class MensagensComponent implements OnInit {
     this.getMensagens();
   }
 
-  getMensagens() {
-    this.mensagensService.getMensagens().subscribe(
-      (response: Mensagens[]) => {
-        this.mensagens = response;
+  getMensagens(page: number = this.page, size: number = this.size) {
+    this.mensagensService.getMensagens(page, size).subscribe(
+      data => {
+        this.mensagens = data.content;
+        this.totalRecords = data.totalElements;
       },
-      error => {
-        console.error('Erro ao buscar planos', error);
-      }
+      error => console.log(error)
+       
     );
+  }
+
+  onPageChange(event: any) {
+    this.page = event.first / event.rows;
+    this.size = event.rows;
+    this.getMensagens(this.page, this.size);
   }
 
 }

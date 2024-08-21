@@ -3,10 +3,10 @@ import { environment } from '../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthModel } from '../model/AuthModel';
-import { Register } from '../model/register';
 import { Login} from '../model/login';
 import { Router } from '@angular/router';
 import {ToastrService} from "ngx-toastr";
+import { User } from '../model/user';
 ;
 @Injectable({
   providedIn: 'root',
@@ -43,7 +43,7 @@ export class AuthService {
     )
   }
 
-  async register(registerModel: Register) {
+  async register(registerModel: User) {
     this.deleteCookies();
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = JSON.stringify(registerModel);

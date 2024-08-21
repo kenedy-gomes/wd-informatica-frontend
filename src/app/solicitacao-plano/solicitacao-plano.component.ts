@@ -43,6 +43,7 @@ export class SolicitacaoPlanoComponent implements OnInit {
       this.solicitacao = data.content;
       this.totalRecords = data.totalElements;
       this.loading = false;
+      console.log(this.solicitacao);
     });
   }
 
@@ -53,6 +54,7 @@ export class SolicitacaoPlanoComponent implements OnInit {
     this.loadPlans(this.page, this.size);
   }
  
+
 
   aprovadoPlan(request: SolicitacaoPlano) {
     this.planoService.approvedPlan(request.id).subscribe(

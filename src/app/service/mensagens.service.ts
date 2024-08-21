@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
@@ -19,8 +19,12 @@ export class MensagensService {
     });
  }
 
-  getMensagens() {
+  getMensagens(page: number, size: number) {
     const headers = this.setHeadersForBearer();
-    return this.http.get<any>(this.baseUrl, { headers});
+    let params = new HttpParams();
+    params = params.append('page', page.toString());
+    params = params.append('size', size.toString());
+
+    return this.http.get<any>(this.baseUrl, { headers, params });
   }
 }

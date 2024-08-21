@@ -3,13 +3,13 @@
   <div class="sidebar">
     <ul>
       <li class="active">
-        <a routerLink="admin/listagem"  routerLinkActive="active"> <i class="pi pi-list"></i> <p>Listagem Planos</p> <span *ngIf="listCount > 0" class="message-count">{{ listCount }}</span></a>
+        <a routerLink="admin/listagem"  routerLinkActive="active"><i class="pi pi-list  mr-1 p-text-secondary" pBadge   style="font-size: 1.5rem" value="{{ listCount }}"></i><p>Listagem de Planos</p></a>
       </li>
       <li>
-        <a routerLink="admin/solicitacao" routerLinkActive="active"><i class="pi pi-bell"></i><p>Solicitação de Plano</p>  <span *ngIf="listSolicitacaoCount > 0" class="message-count">{{ listSolicitacaoCount }}</span> </a>
+        <a routerLink="admin/solicitacao" routerLinkActive="active"><i class="pi pi-bell mr-1 p-text-secondary" pBadge style="font-size: 1.5rem" value="{{ listSolicitacaoCount }}"></i><p>Solicitação de Plano</p></a>
       </li>
       <li>
-        <a routerLink="admin/mensagens" routerLinkActive="active"><i class="pi pi-envelope"></i> <p>Mensagens</p>  <span *ngIf="mensagemCount > 0" class="message-count">{{ mensagemCount }}</span></a>
+        <a routerLink="admin/mensagens" routerLinkActive="active"><i class="pi pi-envelope mr-1 p-text-secondary" pBadge  style="font-size: 1.5rem" value="{{ mensagemCount }}"></i>Mensagens</a>
       </li>
     </ul>
   </div>

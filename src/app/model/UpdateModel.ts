@@ -3,7 +3,7 @@ export interface Update {
     name: string;
     email: string;
     cpf: string;
-    data_nascimento: string;
+    dataNascimento: string;
     sexo: string;
     role: string;
   }

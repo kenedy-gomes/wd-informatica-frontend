@@ -9,18 +9,35 @@
         <p class="plan-description">{{ plan.description }}</p>
         <p class="plan-type"><strong>Valor:</strong> R$ {{ plan.plano }}</p>
         <p class="plan-services"><strong>Megas:</strong> {{ plan.megas }}</p>
-        <p class="plan-services"><strong>Serviços:</strong> {{ plan.servicos }}</p>
+        <p class="plan-services">
+          <strong>Serviços:</strong> {{ plan.servicos }}
+        </p>
       </div>
       <div class="plan-footer">
-        <p class="plan-price">A partir de <strong>R$ {{ plan.plano }}</strong></p>
+        <p class="plan-price">
+          A partir de <strong>R$ {{ plan.plano }}</strong>
+        </p>
         <p class="plan-offer">Aproveite agora e ganhe 1 mês grátis!</p>
-        <p class="plan-cta">Não perca essa oportunidade de ter a melhor internet em casa!</p>
+        <p class="plan-cta">
+          Não perca essa oportunidade de ter a melhor internet em casa!
+        </p>
         <div>
-          <p-button 
-            [loading]="loading" 
-            label="Solicitar plano" 
-            (onClick)="assinarPlano()"  
-            [disabled]="loading">
+          <p-button
+            [loading]="loading"
+            [label]="
+              solicitationStatus === 'APROVADO'
+                ? 'Plano Atual'
+                : solicitationStatus === 'PENDENTE'
+                ? 'Solicitado'
+                : 'Solicitar plano'
+            "
+            (onClick)="assinarPlano()"
+            [disabled]="
+              loading ||
+              solicitationStatus === 'PENDENTE' ||
+              solicitationStatus === 'APROVADO'
+            "
+          >
           </p-button>
         </div>
       </div>

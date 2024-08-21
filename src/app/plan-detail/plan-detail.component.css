@@ -1,91 +1,94 @@
 body {
-    font-family: 'open sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
-  }
-  
-  .container {
+}
+
+.container {
     max-width: 800px;
     margin: 160px auto;
-    padding: 20px;
+    padding: 0;
     background-color: #ffffff;
-    border-radius: 8px;
+    border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .plan-details {
+}
+
+.plan-details {
     text-align: center;
-  }
-  
-  .plan-header {
+    padding-bottom: 20px;
+}
+
+.plan-header {
     background-color: #007bff;
     color: #ffffff;
-    padding: 20px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-  
-  .plan-header h2 {
+    padding: 30px 20px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.plan-header h2 {
     margin: 0;
-    font-size: 28px;
-  }
-  
-  .plan-body {
-    padding: 20px;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.plan-body {
+    padding: 20px 30px;
     text-align: left;
-  }
-  
-  .plan-description {
+}
+
+.plan-description {
     font-size: 18px;
     margin-bottom: 10px;
     color: #333333;
-  }
-  
-  .plan-type, .plan-services {
+}
+
+.plan-type, .plan-services {
     font-size: 16px;
     margin-bottom: 10px;
-  }
-  
-  .plan-type strong, .plan-services strong {
+}
+
+.plan-type strong, .plan-services strong {
     color: #007bff;
-  }
-  
-  .plan-footer {
-    padding: 20px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
-  
-  .plan-price {
-    font-size: 20px;
+}
+
+.plan-footer {
+    padding: 20px 30px;
+    text-align: center;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.plan-price {
+    font-size: 24px;
     margin-bottom: 10px;
     color: #333333;
-  }
-  
-  .plan-offer {
+    font-weight: bold;
+}
+
+.plan-offer {
     font-size: 16px;
     margin-bottom: 10px;
     color: #e63946;
-  }
-  
-  .plan-cta {
+}
+
+.plan-cta {
     font-size: 16px;
     margin-bottom: 20px;
     color: #333333;
-  }
-  
-  .btn-primary {
+}
+
+.btn-primary {
     background-color: #007bff;
     color: #ffffff;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
-  }
-  
-  .btn-primary:hover {
+}
+
+.btn-primary:hover {
     background-color: #0056b3;
-  }
-  
+}

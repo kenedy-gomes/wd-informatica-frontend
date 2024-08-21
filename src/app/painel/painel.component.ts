@@ -8,12 +8,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { MensagensService } from '../service/mensagens.service';
 import {ConteudoService} from '../service/conteudo.service';
 import { PlanoServiceService } from '../service/plano-service.service';
-
+import { BadgeModule } from 'primeng/badge';
 
 @Component({
   selector: 'app-painel',
   standalone: true,
-  imports: [FooterComponent, HeaderComponent, TableModule, CommonModule, ListagemAdminComponent, RouterLink, RouterOutlet],
+  imports: [FooterComponent, HeaderComponent, TableModule, CommonModule, ListagemAdminComponent, RouterLink, RouterOutlet, BadgeModule],
   templateUrl: './painel.component.html',
   styleUrl: './painel.component.css'
 })
@@ -32,9 +32,9 @@ export class PainelComponent implements OnInit {
   }
 
   getMensagensCount() {
-    this.mensagensService.getMensagens().subscribe(
-      (response: any[]) => {
-        this.mensagemCount = response.length;
+    this.mensagensService.getMensagens(0, 1).subscribe(
+      (response: any) => {
+        this.mensagemCount = response.totalElements;
       },
       error => {
         console.error('Erro ao buscar planos', error);

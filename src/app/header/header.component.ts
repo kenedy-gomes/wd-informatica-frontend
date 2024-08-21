@@ -94,7 +94,7 @@ export class HeaderComponent implements OnInit {
   private extractFirstAndSecondName(name: string): string {
     const nameParts = name.split(' ');
     if (nameParts.length >= 2) {
-      return `${nameParts[0]} ${nameParts[1]}`.toUpperCase();
+      return `${nameParts[0]} ${nameParts[1]} ${nameParts[2]} `.toUpperCase();
     }
     return name; 
   }

@@ -80,9 +80,9 @@ export class PerfilComponent implements OnInit {
       (response: Update) => {
         this.userProfile = response;
         console.log(this.userProfile);
-        if (this.userProfile && this.userProfile.data_nascimento) {
-          this.userProfile.data_nascimento = this.formatarData(
-            this.userProfile.data_nascimento
+        if (this.userProfile && this.userProfile.dataNascimento) {
+          this.userProfile.dataNascimento = this.formatarData(
+            this.userProfile.dataNascimento
           );
         }
       },

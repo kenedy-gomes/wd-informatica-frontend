@@ -5,12 +5,13 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
-import { CommonModule } from '@angular/common';  // Importando o CommonModule
+import { CommonModule } from '@angular/common';  
 import { FooterComponent } from '../footer/footer.component';
 import { ToastModule } from 'primeng/toast';
 import { InputMaskModule } from 'primeng/inputmask';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -34,13 +35,15 @@ import { DropdownModule } from 'primeng/dropdown';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   loading: boolean = false;
+
+  private readonly apiUrl = 'https://viacep.com.br/ws';
   
   sexOptions = [
     { label: 'Masculino', value: 'Masculino' },
     { label: 'Feminino', value: 'Feminino' }
   ];
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService , private http: HttpClient) {}
 
   ngOnInit() {
     this.authService.deleteCookies();
@@ -53,10 +56,43 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
       cpf: new FormControl('', [Validators.required, Validators.minLength(11), Validators.pattern('^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$')]),
-      data_nascimento: new FormControl('', [Validators.required]),
+      dataNascimento: new FormControl('', [Validators.required]),
       sexo: new FormControl('', [Validators.required]),
+      cep: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{5}-?[0-9]{3}$')]),
+      endereco: new FormControl(),
+      complemento: new FormControl(),
+      bairro: new FormControl(),
+      cidade: new FormControl(),
+      estado: new FormControl(),
       role: new FormControl('USER')
     });
+  }
+
+
+
+  consultarCep() {
+    const cep = this.registerForm.get('cep')!.value.replace(/\D/g, '');
+
+    if (cep && cep.length === 8) {
+      this.http.get(`${this.apiUrl}/${cep}/json/`).subscribe((data: any) => {
+        console.log(data);
+        if (!data.erro) {
+          this.registerForm.patchValue({
+            endereco: data.logradouro,
+            complemento: data.complemento,
+            bairro: data.bairro,
+            cidade: data.localidade,
+            estado: data.uf
+          });
+        } else {
+          console.error('CEP não encontrado.');
+        }
+      }, (error) => {
+        console.error('Erro ao consultar o CEP:', error);
+      });
+    } else {
+      console.error('CEP inválido.');
+    }
   }
 
   submit() {
@@ -65,6 +101,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.loading = true;
+    console.log(this.registerForm.value);
     setTimeout(() => {
       this.loading = false;
     }, 2000);
@@ -72,7 +109,7 @@ export class RegisterComponent implements OnInit {
   }
 
   get name() {
-    return this.registerForm.get('name')!;
+    return this.registerForm.get('name')!;    
   }
 
   get email() {
@@ -87,13 +124,35 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('cpf')!;
   }
 
-  get data_nascimento() {
-    return this.registerForm.get('data_nascimento')!;
+  get dataNascimento() {
+    return this.registerForm.get('dataNascimento')!;
   }
 
   get sexo() {
     return this.registerForm.get('sexo')!;
   }
 
-  
+  get cep() {
+    return this.registerForm.get('cep')!;
+  }
+
+  get endereco() {
+    return this.registerForm.get('endereco')!;
+  }
+
+  get complemento() {
+    return this.registerForm.get('complemento')!;
+  }
+
+  get bairro() {
+    return this.registerForm.get('bairro')!;
+  }
+
+  get cidade() {
+    return this.registerForm.get('cidade')!;
+  }
+
+  get estado() {
+    return this.registerForm.get('estado')!;
+  }
 }

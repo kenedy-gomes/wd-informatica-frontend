@@ -1,7 +1,7 @@
-export interface UpdatePlanos {
+export interface Plan {
     id: string;
-    megas: string;
     description: string;
+    megas: string;
     plano: string;
     servicos: string;
- }
+}

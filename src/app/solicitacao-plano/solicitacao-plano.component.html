@@ -1,5 +1,5 @@
 <div style="height: 100%;" class="card">
-    <p-table [value]="solicitacao" [rowsPerPageOptions]="[5, 9, 15, 20]" [scrollable]="true" scrollHeight="720px"  [lazy]="true" (onLazyLoad)="onPageChange($event)"  [paginator]="true" [rows]="9" [totalRecords]="totalRecords" [loading]="loading" 
+    <p-table [value]="solicitacao" [rowsPerPageOptions]="[5, 10, 15, 20]" [scrollable]="true" scrollHeight="720px"  [lazy]="true" (onLazyLoad)="onPageChange($event)"  [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading" 
               [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="caption">
             <div>
@@ -26,11 +26,11 @@
                 <td>{{ solicitacao.plan.plano }}</td>
                 <td>{{ solicitacao.plan.description }}</td>
                 <td>{{ solicitacao.plan.servicos }}</td>
-                <td [ngClass]="{
-                      'status-pendente': solicitacao.status === 'PENDENTE',
-                      'status-aprovado': solicitacao.status === 'APROVADO',
-                      'status-recusado': solicitacao.status === 'RECUSADO'
-                    }">{{ solicitacao.status === 'PENDENTE' ? 'Pendente' : solicitacao.status === 'APROVADO' ? 'Aprovado' : 'Recusado' }}</td>
+                <td><p [ngClass]="{
+                    'status-pendente': solicitacao.status === 'PENDENTE',
+                    'status-aprovado': solicitacao.status === 'APROVADO',
+                    'status-recusado': solicitacao.status === 'RECUSADO'
+                  }">{{ solicitacao.status === 'PENDENTE' ? 'Pendente' : solicitacao.status === 'APROVADO' ? 'Aprovado' : 'Recusado' }}</p></td>
                 <td>
                     <p-button 
                         (onClick)="showDialog(solicitacao)" 
@@ -58,9 +58,16 @@
                 <h1>Detalhes do usuário</h1>
                 <p><strong>Nome completo:</strong> {{ selectedSolicitacao.user.name }}</p>
                 <p><strong>Email:</strong> {{ selectedSolicitacao.user.email }}</p>
-                <p><strong>Data de nascimento:</strong> {{ selectedSolicitacao.user.data_nascimento }}</p>
+                <p><strong>Data de nascimento:</strong> {{ selectedSolicitacao.user.dataNascimento }}</p>
                 <p><strong>CPF:</strong> {{ selectedSolicitacao.user.cpf }}</p>
                 <p><strong>Sexo:</strong> {{ selectedSolicitacao.user.sexo }}</p>
+                <p><strong>CEP:</strong> {{ selectedSolicitacao.user.address.cep }}</p>
+                <p><strong>Endereço:</strong> {{ selectedSolicitacao.user.address.endereco }}</p>
+                <p><strong>Complemento:</strong> {{ selectedSolicitacao.user.address.complemento }}</p>
+                <p><strong>Bairro:</strong> {{ selectedSolicitacao.user.address.bairro }}</p>
+                <p><strong>Cidade:</strong> {{ selectedSolicitacao.user.address.cidade }}</p>
+                <p><strong>UF:</strong> {{ selectedSolicitacao.user.address.estado }}</p>
+                
             </div>
             <div class="details">
                 <h1>Detalhes do plano</h1>

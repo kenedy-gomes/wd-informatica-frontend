@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UpdatePlanos } from '../../model/UpdatePlanos';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
@@ -15,6 +14,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PlanoServiceService } from '../../service/plano-service.service';
 import { Mensagens } from '../../model/Mensagens';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
+import { Plan } from '../../model/Plan';
 
 
 @Component({
@@ -32,7 +32,7 @@ export class ListagemAdminComponent implements OnInit {
   rows: number = 10;
 
   visible: { [key: string]: boolean } = {};
-  data!: UpdatePlanos[];
+  data!: Plan[];
   mensagens!: Mensagens[];
   loading: boolean = false;
   visibleCreate: boolean = false;
@@ -43,7 +43,7 @@ export class ListagemAdminComponent implements OnInit {
   ngOnInit(): void {
     this.createPlanosForm(); 
     this.conteudoService.getConteudo().subscribe(
-      (response: UpdatePlanos[]) => {
+      (response: Plan[]) => {
         this.data = response;
       },
       error => {
@@ -57,7 +57,7 @@ export class ListagemAdminComponent implements OnInit {
     this.rows = event.rows ?? 10;
   }
   
-  showDialog(plano: UpdatePlanos) {
+  showDialog(plano: Plan) {
     this.visible[plano.id] = true;
   }
 
@@ -97,7 +97,7 @@ export class ListagemAdminComponent implements OnInit {
     );
   }
 
-  update(plano: UpdatePlanos) {
+  update(plano: Plan) {
     this.conteudoService.updatePlano(plano).subscribe(
       (response) => {
         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record updated', life: 3000 });
