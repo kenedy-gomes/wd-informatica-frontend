@@ -16,7 +16,6 @@ import {Update} from '../model/UpdateModel'
 import { DropdownModule } from 'primeng/dropdown';
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-perfil',
   standalone: true,
@@ -48,7 +47,6 @@ export class PerfilComponent implements OnInit {
     { label: 'Masculino', value: 'Masculino' },
     { label: 'Feminino', value: 'Feminino' }
   ];
-
   constructor(
     private cookieService: CookieService,
     private perfilService: PerfilService, 
@@ -58,15 +56,12 @@ export class PerfilComponent implements OnInit {
       this.userData = this.cookieService.get('name').toUpperCase();
     }
   }
-
   ngOnInit(): void {
     this.loadUserProfile();
   }
-
   updateUserProfile() {
     this.perfilService.updateUserProfile(this.userProfile!);
   }
-
   update() {
       this.updateUserProfile();
       this.loading = true;

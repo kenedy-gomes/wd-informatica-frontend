@@ -14,6 +14,7 @@
               shape="circle"
             />
             <p>{{ userProfile.name }}</p>
+            <a style="text-decoration: underline;">Editar endereço</a>
             <p style="font-weight: bold; text-decoration: underline">
               {{ userProfile.role }}
             </p>
@@ -72,7 +73,6 @@
                   [(ngModel)]="userProfile.dataNascimento"
                 ></p-calendar>
               </div>
-
               <div class="flex-auto">
                 <label for="text" class="font-bold block mb-2"> Sexo </label>
                 <p-dropdown

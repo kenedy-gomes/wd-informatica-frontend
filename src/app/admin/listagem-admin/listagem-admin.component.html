@@ -57,54 +57,38 @@
   <p-dialog
     header="Atualizar planos"
     [modal]="true"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" 
     [(visible)]="visible[plano.id]"
-    [style]="{ width: '40rem', height: 'auto' }"
+    [style]="{ width: '40rem', height: 'auto'}"
   >
-    <span class="p-text-secondary block mb-5">Atualize as informações.</span>
-    <div class="flex align-items-center gap-3 mb-3">
-      <label for="Megas" class="font-semibold w-6rem">Megas</label>
-      <input
-        [(ngModel)]="plano.megas"
-        id="megas"
-        name="megas"
-        pInputText
-        class="flex-auto"
-        autocomplete="off"
-      />
+    <span class="p-text-secondary block mt-3 mb-6">Atualize as informações.</span>
+    <div class="flex align-items-center flex-column gap-3 mb-5">
+      <p-floatLabel  [style]="{ width: '100%' }">
+        <input  [style]="{ width: '100%' }" pInputText id="megas" name="megas"  [(ngModel)]="plano.megas" />
+        <label for="megas">Megas</label>
+    </p-floatLabel>
     </div>
-    <div class="flex align-items-center gap-3 mb-5">
-      <label for="plano" class="font-semibold w-6rem">Plano</label>
-      <input
-        [(ngModel)]="plano.plano"
-        id="plano"
-        name="plano"
-        pInputText
-        class="flex-auto"
-        autocomplete="off"
-      />
+    <div class="flex align-items-center flex-column gap-3 mb-5">
+      <p-floatLabel  [style]="{ width: '100%' }">
+        <input  [style]="{ width: '100%' }" pInputText id="plano" name="plano" [(ngModel)]="plano.plano" />
+        <label for="plano">Planos</label>
+    </p-floatLabel>
     </div>
-    <div class="flex align-items-center gap-3 mb-5">
-      <label for="servicos" class="font-semibold w-6rem">Serviços</label>
-      <textarea
-        [(ngModel)]="plano.servicos"
-        id="servicos"
-        name="servicos"
-        pInputTextarea
-        class="flex-auto"
-        autocomplete="off"
-      ></textarea>
+    <div class="flex align-items-center flex-column gap-3 mb-5">
+      <p-floatLabel  [style]="{ width: '100%' }">
+        <textarea  [style]="{ width: '100%' }" pInputText id="servicos" name="servicos" [(ngModel)]="plano.servicos"></textarea>
+        <label for="servicos">Serviços</label>
+    </p-floatLabel>
     </div>
-    <div class="flex align-items-center gap-3 mb-5">
-      <label for="description" class="font-semibold w-6rem">Descrição</label>
-      <textarea
-        [(ngModel)]="plano.description"
-        name="description"
-        id="description"
-        pInputTextarea
-        class="flex-auto"
-        autocomplete="off"
-      ></textarea>
+
+    <div class="flex align-items-center flex-column gap-3 mb-5">
+      <p-floatLabel  [style]="{ width: '100%' }">
+        <textarea  [style]="{ width: '100%' }" pInputTextarea id="description" name="description" [(ngModel)]="plano.description">
+        </textarea>
+        <label for="description">Descrição</label>
+      </p-floatLabel>
     </div>
+  
     <div class="flex justify-content-end gap-2">
       <p-button
         label="Cancelar"
@@ -126,14 +110,15 @@
   <p-dialog
     header="Cadastro de planos"
     [(visible)]="visibleCreate"
-    [style]="{ width: '50rem' }"
+    [style]="{ width: '35rem' }"
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
   >
-    <form [formGroup]="registerPlanosForm" (ngSubmit)="submit()">
+    <form class="flex flex-column gap-4" [formGroup]="registerPlanosForm" (ngSubmit)="submit()">
       <span class="p-text-secondary block mb-5">Cadastre um novo plano.</span>
-      <div class="flex align-items-center gap-3 mb-3">
-        <label for="Megas" class="font-semibold w-6rem">Megas</label>
+      <div class="flex align-items-center flex-column gap-3">
+       <p-floatLabel  [style]="{ width: '100%' }">
         <input
+         [style]="{ width: '100%' }"
           formControlName="megas"
           id="megas"
           name="megas"
@@ -142,10 +127,13 @@
           class="flex-auto"
           autocomplete="off"
         />
+        <label for="Megas" class="font-semibold w-6rem">Megas</label>
+      </p-floatLabel>
       </div>
-      <div class="flex align-items-center gap-3 mb-5">
-        <label for="plano" class="font-semibold w-6rem">Plano</label>
+      <div class="flex align-items-center gap-3">
+        <p-floatLabel  [style]="{ width: '100%' }">
         <input
+        [style]="{ width: '100%' }"
           formControlName="plano"
           id="plano"
           name="plano"
@@ -154,10 +142,13 @@
           class="flex-auto"
           autocomplete="off"
         />
+        <label for="plano" class="font-semibold w-6rem">Plano</label>
+      </p-floatLabel>
       </div>
-      <div class="flex align-items-center gap-3 mb-5">
-        <label for="servicos" class="font-semibold w-6rem">Serviços</label>
+      <div class="flex align-items-center gap-3">
+        <p-floatLabel  [style]="{ width: '100%' }">
         <textarea
+        [style]="{ width: '100%' }"
           formControlName="servicos"
           id="servicos"
           name="servicos"
@@ -166,10 +157,13 @@
           class="flex-auto"
           autocomplete="off"
         ></textarea>
+        <label for="servicos" class="font-semibold w-6rem">Serviços</label>
+      </p-floatLabel>
       </div>
-      <div class="flex align-items-center gap-3 mb-5">
-        <label for="description" class="font-semibold w-6rem">Descrição</label>
+      <div class="flex align-items-center gap-3">
+        <p-floatLabel  [style]="{ width: '100%' }">
         <textarea
+        [style]="{ width: '100%' }"
           formControlName="description"
           id="description"
           name="description"
@@ -178,6 +172,8 @@
           class="flex-auto"
           autocomplete="off"
         ></textarea>
+        <label for="description" class="font-semibold w-6rem">Descrição</label>
+      </p-floatLabel>
       </div>
       <div class="flex justify-content-end gap-2">
         <p-button label="Cancelar" severity="secondary"></p-button>

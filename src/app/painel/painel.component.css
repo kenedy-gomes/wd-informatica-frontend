@@ -3,6 +3,13 @@
     height: 100vh;
 }
 
+@media screen and (max-width: 768px) {
+    .container-itens{
+        flex-direction: column;
+        height: 100%;
+    }
+}
+
 .conteudo{
     width: 100%;
     padding: 10px;
@@ -16,6 +23,12 @@
     text-align: center;
     padding: 10px;
     border-top: 1px solid #4b4b4b;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar{
+        width: 100%;
+    }
 }
 
 .sidebar ul {

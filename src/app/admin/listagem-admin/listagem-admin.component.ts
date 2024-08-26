@@ -15,13 +15,13 @@ import { PlanoServiceService } from '../../service/plano-service.service';
 import { Mensagens } from '../../model/Mensagens';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { Plan } from '../../model/Plan';
-
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-listagem-admin',
   standalone: true,
   imports: [CommonModule, TableModule, ConfirmPopupModule, FormsModule, DialogModule, 
-    PaginatorModule, ButtonModule, InputTextModule, InputTextareaModule, ReactiveFormsModule],
+    PaginatorModule, ButtonModule, InputTextModule, InputTextareaModule, ReactiveFormsModule, FloatLabelModule],
   templateUrl: './listagem-admin.component.html',
   styleUrl: './listagem-admin.component.css',
   providers: [ConfirmationService, MessageService]

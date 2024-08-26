@@ -75,8 +75,9 @@ export class PlanDetailComponent implements OnInit {
         console.log('Response', response);
         this.loading = false;
         this.toastr.success('Plano solicitado com sucesso');
-        this.solicitationStatus = 'PENDENTE'; // Ajustar o status após solicitar
+        this.solicitationStatus = 'PENDENTE'; 
         this.hasRequestedPlan = true;
+        window.location.href = '/solicitacao-planos';
       },
       (error) => {
         console.error('Erro ao solicitar plano', error);
