@@ -72,7 +72,6 @@ export class PlanDetailComponent implements OnInit {
     };
     this.planoservice.requestPlan(request).subscribe(
       (response) => {
-        console.log('Response', response);
         this.loading = false;
         this.toastr.success('Plano solicitado com sucesso');
         this.solicitationStatus = 'PENDENTE'; 

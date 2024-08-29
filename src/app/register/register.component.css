@@ -7,6 +7,14 @@
     background-color: #f1f1f1;
 }
 
+@media screen and (max-width: 768px) {
+    .container-contato{
+        flex-direction: column;
+        height: 100%;
+        padding: 0px 0px 40px 0px;
+    }    
+}
+
 .container-form{
     width: 540px;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);

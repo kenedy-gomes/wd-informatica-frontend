@@ -1,135 +1,199 @@
 <app-header></app-header>
 <body>
   <div class="container">
-    <div *ngIf="!planRequests.length" class="no-plans">
-      <p>Você nao possui um plano, solicite um.</p>
+    <div
+      style="display: flex; align-items: center; flex-direction: column"
+      *ngIf="!planRequests.length"
+    >
+      <div class="no-plans">
+        <p>Você nao possui um plano, solicite um.</p>
+      </div>
+      <div>
+        <a href="/" rel="noopener noreferrer" class="p-button font-bold">
+          Solicite um plano
+        </a>
+      </div>
     </div>
 
     <div *ngIf="pendingRequests.length" class="pending-plans">
       <h2>Seu plano está pendente!</h2>
       <ul>
         <li *ngFor="let request of pendingRequests">
-          O plano <strong>{{ request.plan.plano }}</strong> solicitado está pendente.
+          O plano <strong>{{ request.plan.megas }} megas</strong> solicitado
+          está pendente.
         </li>
       </ul>
     </div>
 
-   <!--
     <div *ngIf="rejectedRequests.length" class="rejected-plans">
-      <h2>Planos Recusados</h2>
+      <h2>Plano Recusado</h2>
       <ul>
         <li *ngFor="let request of rejectedRequests">
-          O plano <strong>{{ request.plan.plano }}</strong> solicitado foi recusado.
+          O plano <strong>{{ request.plan.megas }} megas</strong> solicitado foi
+          recusado por está fora da area de cobertura para seu endereço.
         </li>
       </ul>
+      <div style="margin-top: 1em;">
+        <a href="/" rel="noopener noreferrer" class="p-button font-bold">
+          Solicite novamente um plano
+        </a>
+      </div>
     </div>
-   -->  
 
     <div *ngIf="approvedRequests.length" class="grid-container gap-5">
-      <div style="margin-bottom: 1rem;" class="header">
+      <div style="margin-bottom: 1rem" class="header">
         <h1>Plano atual</h1>
       </div>
       <div *ngFor="let plano of approvedRequests" class="grid-item">
         <div class="cont-grid">
-          <div>
-            <p>WD FIBRA</p>
+          <div class="container-img">
+            <img src="/assets/wdc-networks-lvtc3.png" alt="" />
           </div>
+          <div class="container-whatsapp">
+            <div>
+              <p-button
+                label="Alterar Plano"
+                iconPos="right"
+                icon="pi pi-pencil"
+                (onClick)="routerplanos()"
+              ></p-button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="cont-grid-2">
           <div>
             <div class="flex gap-2 align-items-center">
               <p><strong>Serviços incluídos:</strong></p>
-              <div style="display: inline;">
-                <p>{{plano.plan.servicos}}</p>
+              <div style="display: inline">
+                <p>{{ plano.plan.servicos }}</p>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5em;">
+              <h2>Descrição</h2>
+              <div
+                style="
+                  display: flex;
+                  justify-content: center;
+                  text-align: center;
+                "
+              >
+                <p>{{ plano.plan.description }}</p>
               </div>
             </div>
           </div>
-        </div>
-        <div class="container-whatsapp">
-          <div class="container-img">
-            <img src="/assets/wdc-networks-lvtc3.png" alt="">
-          </div>
           <div>
-            <p-button label="Alterar Plano" iconPos="right" icon="pi pi-pencil"></p-button>
-          </div>
-        </div>
-        <div class="cont-grid-2">
-          <div>
-            <h2>{{plano.plan.megas}}</h2>
-            <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
-              <p>Download: {{plano.plan.megas}}</p>
-              <p>Upload: {{plano.plan.megas}}</p>
+            <h2>Velocidade</h2>
+            <div
+            >
+              <p><i class="pi pi-cloud-download"></i> Download: {{ plano.plan.megas }}</p>
+              <p><i class="pi pi-cloud-upload"></i> Upload: {{ plano.plan.megas }}</p>
             </div>
           </div>
-          <div>
-            <h2>Descrição</h2>
-            <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
-              <p>{{plano.plan.description}}</p>
-            </div>
-          </div>
+         
           <div>
             <h2>Valores</h2>
-            <div style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
-              <p>{{plano.plan.plano}}</p>
+            <div>
+              <p>{{ plano.plan.plano }} R$</p>
             </div>
           </div>
         </div>
-        <div style="text-align: right;">
+        <div class="cont-button">
+          <p-button
+          iconPos="right"
+          label="Ver detalhes"
+          (click)="sidebarVisible = true"
+          icon="pi pi-arrow-right"
+        ></p-button>
+        </div>
+        <div style="display: flex; gap: 1em; margin-top: 1em;">
+            <i class="pi pi-wifi"></i>
+            <i class="pi pi-wrench"></i>
+            <i class="pi pi-cloud-download"></i>
+            <i class="pi pi-cloud-upload"></i>
+            <i class="pi pi-cog"></i>
+        </div>
+        <div style="text-align: right">
           <div class="card flex justify-content-center">
-            <p-sidebar position="right" styleClass="w-25rem" [(visible)]="sidebarVisible">
-              <div style="display: flex; justify-content: center; align-items: center;">
-                <img class="img-logo-modal" src="/assets/wdc-networks-lvtc3.png" alt="">
+            <p-sidebar
+              position="right"
+              styleClass="w-25rem"
+              [(visible)]="sidebarVisible"
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <img
+                  class="img-logo-modal"
+                  src="/assets/wdc-networks-lvtc3.png"
+                  alt=""
+                />
               </div>
-              <div style="display: flex; justify-content: center; align-items: center;">
-                <h3>WD fibra {{plano.plan.megas}}</h3>
+              <div
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <h3>WD fibra {{ plano.plan.megas }} megas</h3>
               </div>
 
               <div class="wifi">
                 <i class="pi pi-wifi" style="font-size: 1.5rem"></i>
-                <p><strong>{{plano.plan.megas}}</strong> de internet</p>
+                <p>
+                  <strong>{{ plano.plan.megas }} megas</strong> de internet
+                </p>
               </div>
               <div class="valor">
-                <hr>
+                <hr />
                 <strong>Plano atual</strong>
                 <ul class="custo">
                   <li>Instalação Gratuita</li>
                   <li>Manutenção Gratuita</li>
                   <li>Suporte 24hrs</li>
-                  <li><strong>Custo/Mês: {{plano.plan.plano}}</strong></li>
+                  <li>
+                    <strong>Custo/Mês: {{ plano.plan.plano }}</strong>
+                  </li>
                 </ul>
-                <hr>
+                <hr />
               </div>
               <div class="fidelidade">
                 <strong>Serviços</strong>
                 <ul class="custo">
-                  <li>{{plano.plan.servicos}}</li>
+                  <li>{{ plano.plan.servicos }}</li>
                 </ul>
-                <hr>
+                <hr />
               </div>
               <div class="internet">
                 <strong>Internet</strong>
                 <ul class="custo">
-                  <li>{{plano.plan.megas}} Download</li>
-                  <li>{{plano.plan.megas}} Upload</li>
+                  <li>{{ plano.plan.megas }} Download</li>
+                  <li>{{ plano.plan.megas }} Upload</li>
                 </ul>
-                <hr>
+                <hr />
               </div>
 
               <div class="internet">
                 <strong>Suporte</strong>
                 <ul class="custo">
                   <div>
-                    <p class="pi pi-envelope"> wd.2013&#64;gmail.com </p>
+                    <p class="pi pi-envelope">wd.2013&#64;gmail.com</p>
                   </div>
 
                   <div class="whatsapp">
-                    <button class="pi pi-whatsapp"> Falar conosco </button>
+                    <button class="pi pi-whatsapp">Falar conosco</button>
                   </div>
                 </ul>
-                <hr>
+                <hr />
               </div>
-
             </p-sidebar>
           </div>
-          <p-button iconPos="right" label="Ver detalhes" (click)="sidebarVisible = true" icon="pi pi-arrow-right"></p-button>
         </div>
       </div>
     </div>

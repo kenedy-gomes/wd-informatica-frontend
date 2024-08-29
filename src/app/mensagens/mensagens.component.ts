@@ -30,7 +30,6 @@ export class MensagensComponent implements OnInit {
         this.totalRecords = data.totalElements;
       },
       error => console.log(error)
-       
     );
   }
 

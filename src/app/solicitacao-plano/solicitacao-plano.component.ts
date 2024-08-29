@@ -43,7 +43,6 @@ export class SolicitacaoPlanoComponent implements OnInit {
       this.solicitacao = data.content;
       this.totalRecords = data.totalElements;
       this.loading = false;
-      console.log(this.solicitacao);
     });
   }
 
@@ -59,7 +58,6 @@ export class SolicitacaoPlanoComponent implements OnInit {
   aprovadoPlan(request: SolicitacaoPlano) {
     this.planoService.approvedPlan(request.id).subscribe(
       (response) => {
-        console.log(response);
         this.toastr.success('Plano aprovado!');
         this.visible = false;
         this.ngOnInit();
@@ -76,7 +74,6 @@ export class SolicitacaoPlanoComponent implements OnInit {
   rejectedPlan(request: SolicitacaoPlano) {
     this.planoService.rejectedPlan(request.id).subscribe(
       (response) => {
-        console.log(response);
         this.toastr.success('Plano recusado!');
         this.visible = false;
         this.ngOnInit();

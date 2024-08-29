@@ -8,23 +8,62 @@
     <a routerLink="/contato">Fale conosco</a>
     <a routerLink="/admin/painel">Meu painel</a>
     <div style="display: flex; align-items: center; gap: 10px">
-      <p style="font-weight: bold;">Ola, {{userData}}</p>
-      <p-menu #menu [model]="items" [popup]="true" />
-      <p-avatar [style]="{cursor: 'pointer'}" (click)="menu.toggle($event)" pBadge size="large" shape="circle"
-        image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"></p-avatar>
+      <p style="font-weight: bold">Olá, {{ userData }}</p>
+      <p-menu #menu [model]="items" [popup]="true"></p-menu>
+      <div *ngIf="!userProfile?.avatarUrl">
+        <p-avatar
+          [style]="{ cursor: 'pointer' }"
+          (click)="menu.toggle($event)"
+          icon="pi pi-user"
+          styleClass="mr-2"
+          size="xlarge"
+          [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
+          shape="circle"
+        />
+      </div>
+      <div *ngIf="userProfile?.avatarUrl">
+        <p-avatar
+          [style]="{ cursor: 'pointer' }"
+          (click)="menu.toggle($event)"
+          [image]="userProfile!.avatarUrl"
+          styleClass="mr-2"
+          size="xlarge"
+          [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
+          shape="circle"
+        ></p-avatar>
+      </div>
     </div>
   </nav>
 
-  <nav *ngIf="userData && token && roles == 'USER' " class="nav-links">
+  <nav *ngIf="userData && token && roles == 'USER'" class="nav-links">
     <a routerLink="/">Ofertas</a>
     <a target="_blank" href="https://www.minhaconexao.com.br">Velocidade</a>
     <a routerLink="/contato">Fale conosco</a>
     <a *ngIf="roles == 'USER'" routerLink="/planos">Meu plano</a>
     <div style="display: flex; align-items: center; gap: 10px">
-      <p style="font-weight: bold;">Ola, {{userData}}</p>
-      <p-menu #menu [model]="items" [popup]="true" />
-      <p-avatar [style]="{cursor: 'pointer'}" (click)="menu.toggle($event)" pBadge size="large" shape="circle"
-        image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"></p-avatar>
+      <p style="font-weight: bold">Olá, {{ userData }}</p>
+      <p-menu #menu [model]="items" [popup]="true"></p-menu>
+      <div *ngIf="!userProfile?.avatarUrl">
+        <p-avatar
+          [style]="{ cursor: 'pointer' }"
+          (click)="menu.toggle($event)"
+          icon="pi pi-user"
+          styleClass="mr-2"
+          size="xlarge"
+          [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
+          shape="circle"
+        ></p-avatar>
+      </div>
+      <div *ngIf="userProfile?.avatarUrl">
+        <p-avatar
+          [style]="{ cursor: 'pointer' }"
+          (click)="menu.toggle($event)"
+          [image]="userProfile!.avatarUrl"
+          styleClass="mr-2"
+          size="xlarge"
+          shape="circle"
+        ></p-avatar>
+      </div>
     </div>
   </nav>
 
@@ -35,26 +74,104 @@
     <a class="area-cliente" routerLink="/login">Área do cliente</a>
   </nav>
 
-
   <div class="hamburger">
-    <p-sidebar position="right" [style]="{
+    <p-sidebar
+      position="right"
+      [style]="{
         'background-color': '#072063',
         color: 'white',
-        padding: '1rem',
         width: '17rem'
-      }" [(visible)]="sidebarVisible">
+      }"
+      [(visible)]="sidebarVisible"
+    >
       <ul class="ul-nav-links-mobile">
-        <div class="nav-links-mobile">
+        <div *ngIf="!userData && !token" class="nav-links-mobile">
           <a routerLink="/home">Ofertas</a>
+          <a routerLink="/admin/painel">Velocidade</a>
           <a routerLink="/contato">Fale conosco</a>
           <a routerLink="/login">Área do cliente</a>
         </div>
+        <div
+          *ngIf="userData && token && roles == 'USER'"
+          class="nav-links-mobile"
+        >
+          <p-menu #menu [model]="items" [popup]="true"></p-menu>
+          <div *ngIf="!userProfile?.avatarUrl">
+            <p-avatar
+              [style]="{ cursor: 'pointer' }"
+              (click)="menu.toggle($event)"
+              icon="pi pi-user"
+              styleClass="mr-2"
+              size="xlarge"
+              [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
+              shape="circle"
+            />
+          </div>
+          <div *ngIf="userProfile?.avatarUrl">
+            <p-avatar
+              [style]="{ cursor: 'pointer' }"
+              (click)="menu.toggle($event)"
+              [image]="userProfile!.avatarUrl"
+              styleClass="mr-2"
+              size="xlarge"
+              [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
+              shape="circle"
+            ></p-avatar>
+          </div>
+          <div style="margin-bottom: 1em">
+            <p style="font-weight: bold">Olá, {{ userData }}</p>
+          </div>
+          <a routerLink="/">Ofertas</a>
+          <a routerLink="/admin/painel">Velocidade</a>
+          <a routerLink="/contato">Fale conosco</a>
+          <a routerLink="/planos">Meu plano</a>
+        </div>
+        <div
+          *ngIf="userData && token && roles == 'ADMIN'"
+          class="nav-links-mobile"
+        >
+          <p-menu #menu [model]="items" [popup]="true"></p-menu>
+          <div *ngIf="!userProfile?.avatarUrl">
+            <p-avatar
+              [style]="{ cursor: 'pointer' }"
+              (click)="menu.toggle($event)"
+              icon="pi pi-user"
+              styleClass="mr-2"
+              size="xlarge"
+              [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
+              shape="circle"
+            />
+          </div>
+          <div *ngIf="userProfile?.avatarUrl">
+            <p-avatar
+              [style]="{ cursor: 'pointer' }"
+              (click)="menu.toggle($event)"
+              [image]="userProfile!.avatarUrl"
+              styleClass="mr-2"
+              size="xlarge"
+              [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }"
+              shape="circle"
+            ></p-avatar>
+          </div>
+          <div style="margin-bottom: 1em">
+            <p style="font-weight: bold">Olá, {{ userData }}</p>
+          </div>
+          <a routerLink="/">Ofertas</a>
+          <a href="https://www.speedtest.net/pt" target="_blank">Velocidade</a>
+          <a routerLink="/contato">Fale conosco</a>
+          <a routerLink="/admin/painel">Meu Painel</a>
+        </div>
       </ul>
     </p-sidebar>
-    <p-button size="large" [style]="{
+    <p-button
+      size="large"
+      [style]="{
         'background-color': 'transparent',
-        color: '#007BFF',
+        color: 'white',
         border: 'none'
-      }" (click)="sidebarVisible = true" icon="pi pi-bars"></p-button>
+      }"
+      (click)="sidebarVisible = true"
+      icon="pi pi-bars"
+    ></p-button>
   </div>
 </header>

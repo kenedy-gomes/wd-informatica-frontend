@@ -47,7 +47,6 @@ ngOnInit(): void {
     this.conteudoService.getConteudo().subscribe(
       (response: Plan[]) => {
         this.data = response;
-        console.log('Planos', response);
       },
       error => {
         console.error('Erro ao buscar planos', error);

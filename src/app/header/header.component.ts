@@ -17,21 +17,35 @@ import { PerfilService } from '../service/perfil.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, ImageModule, AvatarModule, AvatarGroupModule, SidebarModule, ButtonModule, CommonModule, MenuModule],
+  imports: [
+    RouterLink,
+    ImageModule,
+    AvatarModule,
+    AvatarGroupModule,
+    SidebarModule,
+    ButtonModule,
+    CommonModule,
+    MenuModule,
+  ],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
   roles?: string;
   userData?: string;
   token?: string;
-  userProfile?: Update;  
+  userProfile?: Update;
   items: MenuItem[] | undefined;
-
   menuActive: boolean = false;
   sidebarVisible: boolean = false;
 
-  constructor(private authService: AuthService, private sharedService: SharedService, private cookieService: CookieService, private router: Router, private perfilService: PerfilService) {
+  constructor(
+    private authService: AuthService,
+    private sharedService: SharedService,
+    private cookieService: CookieService,
+    private router: Router,
+    private perfilService: PerfilService
+  ) {
     this.userData = this.cookieService.get('name');
     this.userData = this.extractFirstAndSecondName(this.userData);
     this.roles = this.cookieService.get('role');
@@ -39,56 +53,62 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.setMenuItems();
+    this.setMenuItems();
+    this.getProfile();
+  }
+
+  getProfile() {
+    this.perfilService.getUserProfile().subscribe((response) => {
+      this.userProfile = response;
+    });
   }
 
   private setMenuItems() {
-      if (this.roles === 'USER') {
-        this.items = [
-          {
-            items: [
-              {
-                label: 'Perfil',
-                command: () => this.goToProfile(),
-                icon: 'pi pi-cog'
-              },
-              {
-                label: 'Meu plano',
-                command: () => this.goToPlanos(),
-                icon: 'pi pi-th-large'
-              },
-              {
-                label: 'Sair',
-                command: () => this.logout(),
-                icon: 'pi pi-sign-out'
-              }
-            ]
-          }
-        ];
-      } else if (this.roles === 'ADMIN') {
-        this.items = [
-          {
-            items: [
-              {
-                label: 'Perfil',
-                command: () => this.goToProfile(),
-                icon: 'pi pi-cog'
-              },
-              {
-                label: 'Painel',
-                command: () => this.goToPanel(),
-                icon: 'pi pi-th-large'
-              },
-              {
-                label: 'Sair',
-                command: () => this.logout(),
-                icon: 'pi pi-sign-out'
-              }
-            ]
-          }
-        ];
-      }
-    
+    if (this.roles === 'USER') {
+      this.items = [
+        {
+          items: [
+            {
+              label: 'Perfil',
+              command: () => this.goToProfile(),
+              icon: 'pi pi-cog',
+            },
+            {
+              label: 'Meu plano',
+              command: () => this.goToPlanos(),
+              icon: 'pi pi-th-large',
+            },
+            {
+              label: 'Sair',
+              command: () => this.logout(),
+              icon: 'pi pi-sign-out',
+            },
+          ],
+        },
+      ];
+    } else if (this.roles === 'ADMIN') {
+      this.items = [
+        {
+          items: [
+            {
+              label: 'Perfil',
+              command: () => this.goToProfile(),
+              icon: 'pi pi-cog',
+            },
+            {
+              label: 'Painel',
+              command: () => this.goToPanel(),
+              icon: 'pi pi-th-large',
+            },
+            {
+              label: 'Sair',
+              command: () => this.logout(),
+              icon: 'pi pi-sign-out',
+            },
+          ],
+        },
+      ];
+    }
   }
 
   private extractFirstAndSecondName(name: string): string {
@@ -96,7 +116,7 @@ export class HeaderComponent implements OnInit {
     if (nameParts.length >= 2) {
       return `${nameParts[0]} ${nameParts[1]} ${nameParts[2]} `.toUpperCase();
     }
-    return name; 
+    return name;
   }
 
   logout() {

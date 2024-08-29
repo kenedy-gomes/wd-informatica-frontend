@@ -6,5 +6,6 @@ export interface Update {
     dataNascimento: string;
     sexo: string;
     role: string;
+    avatarUrl: string;
   }
   

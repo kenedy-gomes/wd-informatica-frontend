@@ -42,11 +42,15 @@ export class PlanosComponent implements OnInit {
         this.pendingRequests = this.planRequests.filter(request => request.status === 'PENDENTE');
         this.rejectedRequests = this.planRequests.filter(request => request.status === 'RECUSADO');
         this.approvedRequests = this.planRequests.filter(request => request.status === 'APROVADO');
-        console.log(this.planRequests);
       },
       (error) => {
         console.error('Error fetching user plan requests', error);
       }
     );
   }
+
+  routerplanos() {
+    window.location.href = '/';
+  }
+
 }

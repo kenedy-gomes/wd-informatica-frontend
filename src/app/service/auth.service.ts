@@ -34,7 +34,6 @@ export class AuthService {
         await this.toastr.success('Login realizado com sucesso!');
         const model = await Object.assign(new AuthModel(), response);
         await this.navigate(model.role);
-        console.log(response)
       }, 
       (error) => {
         console.error('Error', error.error);

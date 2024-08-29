@@ -8,19 +8,40 @@
             <p>EDITE SUA FOTO</p>
           </div>
           <div class="avatar">
-            <p-avatar
-              image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
-              size="large"
-              shape="circle"
-            />
+            <div *ngIf="userProfile.avatarUrl">
+              <p-avatar
+                [image]="userProfile.avatarUrl"
+                size="xlarge"
+                shape="circle"
+                styleClass="mr-2"
+              />
+            </div>
+            <div *ngIf="!userProfile.avatarUrl">
+              <p-avatar icon="pi pi-user" size="xlarge" shape="circle" />
+            </div>
+            <div class="card flex justify-content-center">
+              <p-fileUpload
+                mode="basic"
+                name="demo[]"
+                chooseIcon="pi pi-upload"
+                url="https://www.primefaces.org/cdn/api/upload.php"
+                accept="image/*"
+                maxFileSize="1000000"
+                (onUpload)="onUpload($event)"
+                (onSelect)="onFileSelected($event)"
+                [auto]="true"
+                chooseLabel="Escolher imagem"
+              />
+            </div>
+
             <p>{{ userProfile.name }}</p>
-            <a style="text-decoration: underline;">Editar endereço</a>
+            <a style="text-decoration: underline">Editar endereço</a>
             <p style="font-weight: bold; text-decoration: underline">
               {{ userProfile.role }}
             </p>
           </div>
         </div>
-        <div  class="form">
+        <div class="form">
           <p>EDITE SEUS DADOS PESSOAIS</p>
           <div class="card">
             <div class="flex flex-wrap gap-3 mb-4">
@@ -69,7 +90,6 @@
                   id="dataNascimento"
                   name="dataNascimento"
                   [style]="{ width: '100%' }"
-                 
                   [(ngModel)]="userProfile.dataNascimento"
                 ></p-calendar>
               </div>

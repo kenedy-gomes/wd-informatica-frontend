@@ -44,7 +44,6 @@ export class PlanoServiceService {
     const headers = this.setHeadersForBearer();
     return this.http.put<Plan>(this.baseUrl, plano, { headers }).subscribe(
       async (response) => {
-        console.log(response);
         await this.toastr.success('Plano atualizado!');
       },
       (error) => {

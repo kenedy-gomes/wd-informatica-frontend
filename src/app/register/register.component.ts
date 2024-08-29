@@ -12,7 +12,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { HttpClient } from '@angular/common/http';
-
+ 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -27,7 +27,7 @@ import { HttpClient } from '@angular/common/http';
     ToastModule,
     InputMaskModule,
     CalendarModule,
-    DropdownModule
+    DropdownModule,
   ],
   styleUrls: ['./register.component.css'],
   standalone: true
@@ -75,7 +75,6 @@ export class RegisterComponent implements OnInit {
 
     if (cep && cep.length === 8) {
       this.http.get(`${this.apiUrl}/${cep}/json/`).subscribe((data: any) => {
-        console.log(data);
         if (!data.erro) {
           this.registerForm.patchValue({
             endereco: data.logradouro,
@@ -101,7 +100,6 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.loading = true;
-    console.log(this.registerForm.value);
     setTimeout(() => {
       this.loading = false;
     }, 2000);

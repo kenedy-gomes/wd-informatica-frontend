@@ -27,7 +27,6 @@ export class ContatoComponent implements OnInit {
 
   ngOnInit(): void {
     this.createPlanosForm(); 
-    console.log('API URL:', environment.apiUrl);
   }
 
   private createPlanosForm() {
