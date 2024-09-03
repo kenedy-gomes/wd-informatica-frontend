@@ -1,6 +1,6 @@
 
 export const environmentUpload = {
     production: false,
-    AWS_ACCESS_KEY: "",
-    AWS_SECRET_KEY: ""
+    accessKeyId: "AKIAVRUVV7QVD3I4JDGY",
+    secretAccessKey: "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"
   };

@@ -8,7 +8,6 @@ export const environment = {
     apiPlanos: 'http://localhost:8080/api/planos',
     apiProfile: 'http://localhost:8080/user/profile',
     apiUpdate: 'http://localhost:8080/user/update/',
-    apiSolicitacoes: 'http://localhost:8080/api/planos',
     apiUserUpload: 'http://localhost:8080/user/avatar'
   };
   

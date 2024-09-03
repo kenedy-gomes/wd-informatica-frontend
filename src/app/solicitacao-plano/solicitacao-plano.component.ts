@@ -46,14 +46,11 @@ export class SolicitacaoPlanoComponent implements OnInit {
     });
   }
 
-
   onPageChange(event: any) {
     this.page = event.first / event.rows;
     this.size = event.rows;
     this.loadPlans(this.page, this.size);
   }
- 
-
 
   aprovadoPlan(request: SolicitacaoPlano) {
     this.planoService.approvedPlan(request.id).subscribe(

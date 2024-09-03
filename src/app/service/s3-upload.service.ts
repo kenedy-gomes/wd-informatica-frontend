@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { environmentUpload } from '../environments/environmentUpload';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class S3UploadService {
     this.s3Client = new S3Client({
       region:  this.region,
       credentials: {
-        accessKeyId: 'AKIAVRUVV7QVD3I4JDGY', 
-        secretAccessKey: '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', 
+        accessKeyId: environmentUpload.accessKeyId, 
+        secretAccessKey: environmentUpload.secretAccessKey, 
       },
     });
   }

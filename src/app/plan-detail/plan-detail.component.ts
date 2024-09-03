@@ -7,11 +7,12 @@ import { FooterComponent } from '../footer/footer.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-plan-detail',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, ButtonModule],
+  imports: [CommonModule, HeaderComponent, FooterComponent, ButtonModule, DialogModule],
   templateUrl: './plan-detail.component.html',
   styleUrls: ['./plan-detail.component.css'],
 })
@@ -20,6 +21,11 @@ export class PlanDetailComponent implements OnInit {
   plan: any;
   hasRequestedPlan = false;
   solicitationStatus: string | null = null;
+  visible: boolean = false;
+
+  showDialog() {
+    this.visible = true;
+}
 
   constructor(
     private planoservice: PlanoServiceService,

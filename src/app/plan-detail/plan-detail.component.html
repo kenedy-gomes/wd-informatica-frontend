@@ -29,16 +29,40 @@
                 ? 'Plano Atual'
                 : solicitationStatus === 'PENDENTE'
                 ? 'Solicitado'
+                : solicitationStatus === 'RECUSADO'
+                ? 'Solicitação recusada'
                 : 'Solicitar plano'
             "
             (onClick)="assinarPlano()"
             [disabled]="
               loading ||
               solicitationStatus === 'PENDENTE' ||
-              solicitationStatus === 'APROVADO'
+              solicitationStatus === 'APROVADO' ||
+              solicitationStatus === 'RECUSADO'
             "
           >
           </p-button>
+
+          <div style="margin-top: 1em;" *ngIf="solicitationStatus === 'RECUSADO'">
+            Veja por qual motivo seu plano foi recusado <i style="cursor: pointer; margin-left: 5px; color: #007bff;" class="pi pi-external-link" (click)="showDialog()" ></i>
+          </div>
+          <div class="card flex justify-content-center">
+            <p-dialog 
+                header="Motivo" 
+                [(visible)]="visible" 
+                [modal]="true" 
+                [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" 
+                [style]="{ width: '50vw' }" 
+                [draggable]="false" 
+                [resizable]="false">
+                    <p style="text-align: justify;">
+                      Olá, infelizmente, após uma análise detalhada, verificamos que atualmente não possuímos cobertura de internet fibra para o endereço informado. Estamos constantemente expandindo nossa rede para atender a mais regiões, e esperamos poder oferecer nossos serviços na sua área em breve.
+                      Caso tenha alguma dúvida ou queira mais informações, por favor, entre em contato com nossa equipe de suporte. Agradecemos a sua compreensão e estamos à disposição para ajudar no que for necessário. <a href="/contato">Contato</a>
+                    </p>
+            </p-dialog>
+        </div>
+
+
         </div>
       </div>
     </div>

@@ -13,7 +13,6 @@ import { Plan } from '../model/Plan';
 })
 export class PlanoServiceService {
   private baseUrl = environment.apiPlanos;
-  private baseUrlSolicitar = environment.apiSolicitacoes;
   page: number = 0;
   size: number = 10;
 
@@ -71,7 +70,7 @@ export class PlanoServiceService {
 
   requestPlan(request: any): Observable<any> {
     const headers = this.setHeadersForBearer();
-    return this.http.post(`${this.baseUrlSolicitar}/request-plan`, request, {
+    return this.http.post(`${this.baseUrl}/request-plan`, request, {
       headers,
     });
   }
@@ -79,7 +78,7 @@ export class PlanoServiceService {
   rejectedPlan(id: String): Observable<any> {
     const headers = this.setHeadersForBearer();
     return this.http.post(
-      `${this.baseUrlSolicitar}/reject-plan-request/${id}`,
+      `${this.baseUrl}/reject-plan-request/${id}`,
       {},
       { headers }
     );
@@ -88,7 +87,7 @@ export class PlanoServiceService {
   approvedPlan(id: String): Observable<any> {
     const headers = this.setHeadersForBearer();
     return this.http.post(
-      `${this.baseUrlSolicitar}/approve-plan-request/${id}`,
+      `${this.baseUrl}/approve-plan-request/${id}`,
       {},
       { headers }
     );
@@ -100,7 +99,7 @@ export class PlanoServiceService {
     params = params.append('page', page.toString());
     params = params.append('size', size.toString());
     return this.http.get(
-      `${this.baseUrlSolicitar}/plan-requests?page=${page}&size=${size}`,
+      `${this.baseUrl}/plan-requests?page=${page}&size=${size}`,
       { headers, params }
     );
   }
