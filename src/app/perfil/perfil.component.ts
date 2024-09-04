@@ -138,8 +138,10 @@ export class PerfilComponent implements OnInit {
           bucketName,
           fileName
         );
+       
         this.userProfile!.avatarUrl = fileUrl;
         this.perfilService.updateUserProfile(this.userProfile!);
+        this.cookieService.set('avatarUrl', this.userProfile?.avatarUrl!);
       } catch (error) {
         console.error('Erro ao fazer upload', error);
         this.toast.error('Erro ao fazer upload');

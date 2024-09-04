@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
   roles?: string;
   userData?: string;
   token?: string;
+  avatarUrl?: string;
   userProfile?: Update;
   items: MenuItem[] | undefined;
   menuActive: boolean = false;
@@ -50,6 +51,7 @@ export class HeaderComponent implements OnInit {
     this.userData = this.extractFirstAndSecondName(this.userData);
     this.roles = this.cookieService.get('role');
     this.token = this.cookieService.get('authToken');
+   
   }
 
   ngOnInit() {
@@ -58,9 +60,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getProfile() {
-    this.perfilService.getUserProfile().subscribe((response) => {
-      this.userProfile = response;
-    });
+    this.avatarUrl = this.cookieService.get('avatarUrl');
   }
 
   private setMenuItems() {
