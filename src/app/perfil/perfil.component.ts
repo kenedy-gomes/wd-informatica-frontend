@@ -23,6 +23,7 @@ import { DialogModule } from 'primeng/dialog';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-perfil',
   standalone: true,

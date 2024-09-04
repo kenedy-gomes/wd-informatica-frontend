@@ -35,7 +35,11 @@
             </div>
 
             <p>{{ userProfile.name }}</p>
-            <a (click)="showDialog()" style="text-decoration: underline; cursor: pointer;">Editar endereço</a>
+            <a
+              (click)="showDialog()"
+              style="text-decoration: underline; cursor: pointer"
+              >Editar endereço</a
+            >
             <p style="font-weight: bold; text-decoration: underline">
               {{ userProfile.role }}
             </p>
@@ -51,34 +55,80 @@
               [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
               [maximizable]="true"
             >
-               <div class="form2">
-                    <div class="flex align-items-center flex-column gap-5 mb-5">
-                      <p-floatLabel [style]="{ width: '100%', marginTop: '20px'}">
-                          <input [style]="{ width: '100%' }" pInputText id="cep" name="cep" (input)="consultarCep()" [(ngModel)]="userProfile.address.cep" />
-                          <label for="cep">Cep</label>
-                      </p-floatLabel>
-                      <p-floatLabel [style]="{ width: '100%' }">
-                          <input [style]="{ width: '100%' }" pInputText id="endereco" name="endereco" [(ngModel)]="userProfile.address.endereco" />
-                          <label for="endereco">Endereço</label>
-                      </p-floatLabel>
-                      <p-floatLabel [style]="{ width: '100%' }">
-                          <input [style]="{ width: '100%' }" pInputText id="complemento" name="complemento" [(ngModel)]="userProfile.address.complemento" />
-                          <label for="complemento">Complemento</label>
-                      </p-floatLabel>
-                      <p-floatLabel [style]="{ width: '100%' }">
-                          <input [style]="{ width: '100%' }" pInputText id="bairro" disabled="true" name="bairro" [(ngModel)]="userProfile.address.bairro" />
-                          <label for="bairro">Bairro</label>
-                      </p-floatLabel>
-                      <p-floatLabel [style]="{ width: '100%' }">
-                          <input [style]="{ width: '100%' }" pInputText id="cidade" disabled="true" name="cidade" [(ngModel)]="userProfile.address.cidade" />
-                          <label for="cidade">Cidade</label>
-                      </p-floatLabel>
+              <div class="form2">
+                <div class="flex align-items-center flex-column gap-5 mb-5">
+                  <div class="container-address">
+                    <p-floatLabel
+                      [style]="{ width: '100%', marginTop: '20px' }"
+                    >
+                      <input
+                        class="w-full"
+                        pInputText
+                        width="100%"
+                        id="cep"
+                        name="cep"
+                        inputId="integeronly"
+                        (input)="consultarCep()"
+                        [(ngModel)]="userProfile.address.cep"
+                      />
+                      <label for="number-input">Cep</label>
+                    </p-floatLabel>
+                    <p-floatLabel
+                      [style]="{ width: '100%', marginTop: '20px' }"
+                    >
+                      <input
+                        [style]="{ width: '100%' }"
+                        pInputText
+                        id="endereco"
+                        name="endereco"
+                        [(ngModel)]="userProfile.address.endereco"
+                      />
+                      <label for="endereco">Endereço</label>
+                    </p-floatLabel>
                   </div>
-               </div>
-               <div class="flex justify-content-end">
-                   <p-button type="button" label="Cancelar" class="p-button-outlined" (click)="visible = false"></p-button>
-                   <p-button type="button" label="Editar" class="p-button-outlined ml-2" (click)="editAddress()"></p-button>
-               </div>
+
+                  <p-floatLabel [style]="{ width: '100%' }">
+                    <input
+                      class="w-full"
+                      pInputText
+                      id="complemento"
+                      name="complemento"
+                      [(ngModel)]="userProfile.address.complemento"
+                    />
+                    <label for="complemento">Complemento</label>
+                  </p-floatLabel>
+                  <p-floatLabel [style]="{ width: '100%' }">
+                    <input
+                      class="w-full"
+                      pInputText
+                      id="bairro"
+                      disabled="true"
+                      name="bairro"
+                      [(ngModel)]="userProfile.address.bairro"
+                    />
+                    <label for="bairro">Bairro</label>
+                  </p-floatLabel>
+                  <p-floatLabel [style]="{ width: '100%' }">
+                    <input
+                      class="w-full"
+                      pInputText
+                      id="cidade"
+                      disabled="true"
+                      name="cidade"
+                      [(ngModel)]="userProfile.address.cidade"
+                    />
+                    <label for="cidade">Cidade</label>
+                  </p-floatLabel>
+                </div>
+              </div>
+              <div class="flex justify-content-end">
+                <p-button
+                  type="button"
+                  label="Editar"
+                  class="p-button-outlined ml-2"
+                  (click)="editAddress()"
+                ></p-button>
+              </div>
             </p-dialog>
           </div>
           <!--Modal Editar Endereço-->

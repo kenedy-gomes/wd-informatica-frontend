@@ -42,25 +42,18 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private sharedService: SharedService,
     private cookieService: CookieService,
     private router: Router,
-    private perfilService: PerfilService
   ) {
     this.userData = this.cookieService.get('name');
     this.userData = this.extractFirstAndSecondName(this.userData);
     this.roles = this.cookieService.get('role');
     this.token = this.cookieService.get('authToken');
-   
+    this.avatarUrl = this.cookieService.get('avatarUrl');
   }
 
   ngOnInit() {
     this.setMenuItems();
-    this.getProfile();
-  }
-
-  getProfile() {
-    this.avatarUrl = this.cookieService.get('avatarUrl');
   }
 
   private setMenuItems() {
