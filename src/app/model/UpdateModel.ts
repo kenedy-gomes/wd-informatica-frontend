@@ -1,3 +1,5 @@
+import { Address } from "./Address";
+
 export interface Update {
     id: String;
     name: string;
@@ -7,5 +9,6 @@ export interface Update {
     sexo: string;
     role: string;
     avatarUrl: string;
+    address: Address;
   }
   

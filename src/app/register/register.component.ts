@@ -68,11 +68,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-
-
   consultarCep() {
     const cep = this.registerForm.get('cep')!.value.replace(/\D/g, '');
-
     if (cep && cep.length === 8) {
       this.http.get(`${this.apiUrl}/${cep}/json/`).subscribe((data: any) => {
         if (!data.erro) {

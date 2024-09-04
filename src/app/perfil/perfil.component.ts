@@ -19,6 +19,9 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { S3UploadService } from '../service/s3-upload.service';
 import { ToastrService } from 'ngx-toastr';
+import { DialogModule } from 'primeng/dialog';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-perfil',
@@ -38,6 +41,8 @@ import { ToastrService } from 'ngx-toastr';
     DropdownModule,
     FileUploadModule,
     ToastModule,
+    DialogModule,
+    FloatLabelModule,
   ],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css',
@@ -47,20 +52,29 @@ export class PerfilComponent implements OnInit {
   roles?: string;
   userData?: string;
   userProfile?: Update;
+  
   loading: boolean = false;
   selectedFile: File | null = null;
+  visible: boolean = false;
+  private readonly apiUrl = 'https://viacep.com.br/ws';
 
   sexOptions = [
     { label: 'Masculino', value: 'Masculino' },
     { label: 'Feminino', value: 'Feminino' },
   ];
 
+
+  showDialog() {
+      this.visible = true;
+  }
+
   constructor(
     private cookieService: CookieService,
     private perfilService: PerfilService,
     private s3UploadService: S3UploadService,
-    private toast: ToastrService
-  ) {
+    private toast: ToastrService,
+    private http: HttpClient
+    ) {
     if (
       this.userProfile?.role === 'USER' ||
       this.userProfile?.role === 'ADMIN'
@@ -68,6 +82,8 @@ export class PerfilComponent implements OnInit {
       this.userData = this.cookieService.get('name').toUpperCase();
     }
   }
+ 
+
   ngOnInit(): void {
     this.loadUserProfile();
   }
@@ -79,6 +95,38 @@ export class PerfilComponent implements OnInit {
     }
   }
 
+  consultarCep() {
+    const cep = this.userProfile?.address.cep?.replace(/\D/g, '');
+    if (cep && cep.length === 8) {
+      this.http.get(`${this.apiUrl}/${cep}/json/`).subscribe(
+        (data: any) => {
+          if (!data.erro) {
+            this.userProfile!.address.endereco = data.logradouro;
+            this.userProfile!.address.complemento = data.complemento;
+            this.userProfile!.address.bairro = data.bairro;
+            this.userProfile!.address.cidade = data.localidade;
+            this.userProfile!.address.estado = data.uf;
+          } else {
+            console.error('CEP não encontrado.');
+          }
+        },
+        (error) => {
+          console.error('Erro ao consultar o CEP:', error);
+        }
+      );
+    } else {
+      console.error('CEP inválido.');
+    }
+  }
+
+  async upAddress(event: any): Promise<void> {
+    this.perfilService.updateAddress(this.userProfile?.address!);
+  }
+
+  editAddress() {
+    this.upAddress(this.userProfile!);
+  }
+  
   async onUpload(event: any): Promise<void> {
     if (this.selectedFile) {
       this.loading = true;
@@ -119,6 +167,7 @@ export class PerfilComponent implements OnInit {
           this.userProfile.dataNascimento = this.formatarData(
             this.userProfile.dataNascimento
           );
+          console.log(this.userProfile);
         }
       },
       (error) => {
