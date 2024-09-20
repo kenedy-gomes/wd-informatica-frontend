@@ -43,7 +43,7 @@
     <div style="display: flex; align-items: center; gap: 10px">
       <p style="font-weight: bold">Olá, {{ userData }}</p>
       <p-menu #menu [model]="items" [popup]="true"></p-menu>
-      <div *ngIf="!userProfile?.avatarUrl">
+      <div *ngIf="!avatarUrl">
         <p-avatar
           [style]="{ cursor: 'pointer' }"
           (click)="menu.toggle($event)"
@@ -54,11 +54,11 @@
           shape="circle"
         ></p-avatar>
       </div>
-      <div *ngIf="userProfile?.avatarUrl">
+      <div *ngIf="avatarUrl">
         <p-avatar
           [style]="{ cursor: 'pointer' }"
           (click)="menu.toggle($event)"
-          [image]="userProfile!.avatarUrl"
+          [image]="avatarUrl"
           styleClass="mr-2"
           size="xlarge"
           shape="circle"
